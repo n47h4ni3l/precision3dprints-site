@@ -1,27 +1,357 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-AU">
 <head>
-  <meta charset="UTF-8" />
-  <title>Precision 3D Prints</title>
-  <meta name="description" content=" Precision 3D Prints in Adelaide provides professional 3D printing of your designs, including prototypes, replacement parts, and functional prints." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Precision 3D Prints | 3D Printing Services in Adelaide</title>
+  <meta name="description" content="Precision 3D Prints provides professional 3D printing services in Adelaide. Custom parts, prototypes, replacement components, and small production runs. Fast turnaround." />
+
+  <!-- Basic SEO / sharing -->
+  <meta property="og:title" content="Precision 3D Prints | 3D Printing Services in Adelaide" />
+  <meta property="og:description" content="Professional 3D printing in Adelaide for custom parts, prototypes, replacement components, and small production runs." />
+  <meta property="og:type" content="website" />
+
+  <!-- Optional: set your canonical once you're happy -->
+  <link rel="canonical" href="https://precision3dprints.com.au/" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a30;
+      --text:#eaf0ff;
+      --muted:#b7c3e6;
+      --line:rgba(255,255,255,.10);
+      --accent:#ff7a18;
+      --accent2:#1e5eff;
+      --max: 1040px;
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(30,94,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(255,122,24,.14), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 70px;}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:12px 0 22px; border-bottom:1px solid var(--line);
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+    }
+    .mark{
+      width:44px; height:44px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(30,94,255,.95), rgba(255,122,24,.95));
+      box-shadow: 0 14px 35px rgba(0,0,0,.35);
+    }
+    .brand b{display:block; font-size:16px; letter-spacing:.2px}
+    .brand span{display:block; font-size:12px; color:var(--muted)}
+    nav{display:flex; gap:14px; flex-wrap:wrap}
+    nav a{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:13px;
+      padding:8px 10px;
+      border:1px solid transparent;
+      border-radius:12px;
+    }
+    nav a:hover{border-color:var(--line); color:var(--text)}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      padding:26px 0 10px;
+    }
+    @media (max-width: 860px){
+      .hero{grid-template-columns:1fr}
+      nav{display:none}
+    }
+    .card{
+      background: rgba(15,26,48,.78);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:22px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.28);
+      backdrop-filter: blur(6px);
+    }
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:12px;
+    }
+    .dot{width:8px; height:8px; border-radius:999px; background:var(--accent)}
+    h1{
+      margin:0 0 10px;
+      font-size:38px;
+      line-height:1.15;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      max-width: 62ch;
+    }
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      text-decoration:none;
+      font-weight:600;
+      font-size:13px;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(30,94,255,.92), rgba(255,122,24,.92));
+      border-color: transparent;
+    }
+    .btn:hover{filter:brightness(1.06)}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 860px){ .grid{grid-template-columns:1fr} }
+    .tile{
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .tile b{display:block; margin-bottom:4px}
+    .tile p{margin:0; color:var(--muted); font-size:13px}
+    section{margin-top:18px}
+    h2{margin:0 0 10px; font-size:18px; letter-spacing:-.2px}
+    ul{margin:0; padding-left:18px; color:var(--muted)}
+    li{margin:6px 0}
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 860px){ .two{grid-template-columns:1fr} }
+    .small{font-size:13px; color:var(--muted)}
+    .footer{
+      margin-top:22px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+      margin:6px 6px 0 0;
+    }
+    .note{
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
+      color: var(--muted);
+      margin: 10px 0 0;
+      font-size: 13px;
+    }
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      background: rgba(255,255,255,.06);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Precision 3D Prints Adelaide</h1>
-  <p>Professional 3D printing services in Adelaide specialising in the printing of custom parts, prototypes, and replacement components.</p>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#top" aria-label="Precision 3D Prints home">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <b>Precision 3D Prints</b>
+          <span>Adelaide • Custom 3D Printing</span>
+        </div>
+      </a>
+      <nav aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#materials">Materials</a>
+        <a href="#quote">Get a Quote</a>
+        <a href="#area">Service Area</a>
+      </nav>
+    </header>
 
-  <h2>Services</h2>
-  <ul>
-    <li>Custom 3D printing</li>
-    <li>Replacement parts</li>
-    <li>Prototyping</li>
-    <li>Small production runs</li>
-  </ul>
+    <main id="top" class="hero">
+      <div class="card">
+        <div class="kicker"><span class="dot"></span><span>Locally operated • Fast turnaround • Functional parts</span></div>
 
-  <h2>Get a Quote</h2>
-  <p>Email your files to <strong>sales@precision3dprints.com.au</strong> or use our quote form (coming soon).</p>
+        <!-- SEO-targeted H1 (search intent), brand remains intact elsewhere -->
+        <h1>3D Printing Services in Adelaide</h1>
 
-  <h2>Service Area</h2>
-  <p>Adelaide and surrounding suburbs.</p>
+        <p class="sub">
+          <strong>Precision 3D Prints</strong> provides professional <strong>3D printing services in Adelaide</strong> specialising in
+          custom parts, prototypes, replacement components, and small production runs.
+        </p>
+
+        <div class="ctaRow">
+          <!-- Replace the email below with your working Microsoft 365 address -->
+          <a class="btn primary" href="mailto:sales@precision3dprints.com.au?subject=3D%20Printing%20Quote%20Request">Request a Quote</a>
+          <a class="btn" href="#quote">How to Send Files</a>
+        </div>
+
+        <div class="grid" aria-label="Highlights">
+          <div class="tile">
+            <b>Functional Parts</b>
+            <p>Fit, strength, and durability focused—ideal for brackets, mounts, repairs, and tools.</p>
+          </div>
+          <div class="tile">
+            <b>Prototyping</b>
+            <p>Rapid iteration with clear communication on materials, tolerances, and finish.</p>
+          </div>
+          <div class="tile">
+            <b>Quality Finish</b>
+            <p>Dialled-in settings and consistent output for professional, repeatable results.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h2>Contact</h2>
+        <p class="small" style="margin-top:0">
+          Replace these placeholders with your real contact details.
+        </p>
+
+        <div class="pill"><strong>Email:</strong> <a href="mailto:sales@precision3dprints.com.au">sales@precision3dprints.com.au</a></div>
+        <div class="pill"><strong>Phone:</strong> <span>04xx xxx xxx</span></div>
+        <div class="pill"><strong>Hours:</strong> <span>By appointment</span></div>
+
+        <p class="note">
+          If you’re unsure what file type you have, send it anyway. We’ll confirm compatibility and the best print approach.
+        </p>
+
+        <section id="area" style="margin-top:16px">
+          <h2>Service Area</h2>
+          <p class="small" style="margin:0">
+            Adelaide and surrounding suburbs. (If you want, add your base suburb here for stronger local relevance.)
+          </p>
+        </section>
+      </aside>
+    </main>
+
+    <section id="services" class="card">
+      <h2>Services</h2>
+      <div class="two">
+        <div>
+          <ul>
+            <li><strong>Custom 3D printing</strong> for functional parts and everyday solutions</li>
+            <li><strong>Replacement parts</strong> for broken or discontinued components</li>
+            <li><strong>Prototyping</strong> for product development and fit-check iterations</li>
+            <li><strong>Small production runs</strong> for batches and repeat jobs</li>
+          </ul>
+          <p class="note">
+            If you have measurements or photos, include them—especially for replacement parts where fit matters.
+          </p>
+        </div>
+        <div>
+          <h2>What we need for a quote</h2>
+          <ul>
+            <li>File (STL / 3MF / STEP) or photos + dimensions</li>
+            <li>Material preference (or “not sure”)</li>
+            <li>Quantity</li>
+            <li>Deadline (if any)</li>
+            <li>Delivery/pickup suburb</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="materials" class="card">
+      <h2>Materials</h2>
+      <p class="small" style="margin-top:0">
+        Add or remove materials based on what you actually want to offer to customers.
+      </p>
+      <div>
+        <span class="pill"><strong>PLA</strong> (general-purpose, crisp finish)</span>
+        <span class="pill"><strong>PETG</strong> (durable, good for functional parts)</span>
+        <span class="pill"><strong>ABS / ASA</strong> (heat/UV resistance, more demanding)</span>
+      </div>
+      <p class="note">
+        For outdoor use in Adelaide heat/sun, <strong>ASA</strong> is often the safer recommendation.
+      </p>
+    </section>
+
+    <section id="quote" class="card">
+      <h2>Get a Quote</h2>
+      <p class="small" style="margin-top:0">
+        For now, the simplest workflow is email. A web quote form can be added later without changing hosting.
+      </p>
+
+      <ol class="small" style="margin:0; padding-left:18px; color:var(--muted)">
+        <li>Email your files to <a href="mailto:sales@precision3dprints.com.au?subject=3D%20Printing%20Quote%20Request">sales@precision3dprints.com.au</a></li>
+        <li>Include quantity, material (if known), and your suburb</li>
+        <li>If you don’t have a file, include photos + measurements</li>
+      </ol>
+
+      <p class="note">
+        Preferred file types: <code>.3mf</code>, <code>.stl</code>, <code>.step</code>. If you have something else, send it—we’ll advise.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Professional 3D Printing in Adelaide</h2>
+      <p class="small" style="margin-top:0">
+        Precision 3D Prints is focused on reliable, high-quality outcomes for customers who need parts that fit and function.
+        If you searched for <strong>3D printing Adelaide</strong>, you’re in the right place—send through your file and we’ll quote quickly.
+      </p>
+      <p class="small" style="margin:0">
+        Typical jobs include brackets, mounts, adapters, enclosures, prototypes, repair parts, and practical household solutions.
+      </p>
+    </section>
+
+    <div class="footer">
+      <div>© <span id="y"></span> Precision 3D Prints • Adelaide, South Australia</div>
+      <div class="small">Built on Cloudflare Pages • Fast, secure, and low-cost</div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Optional: LocalBusiness structured data (helps SEO). Replace placeholders when ready. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Precision 3D Prints",
+    "url": "https://precision3dprints.com.au/",
+    "areaServed": "Adelaide, South Australia",
+    "description": "Professional 3D printing services in Adelaide specialising in custom parts, prototypes, replacement components, and small production runs.",
+    "email": "sales@precision3dprints.com.au"
+  }
+  </script>
 </body>
 </html>
