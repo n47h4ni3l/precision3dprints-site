@@ -27,7 +27,6 @@
     .hidden { display:none; }
   </style>
 
-  <!-- Uploadcare: replace YOUR_PUBLIC_KEY below -->
   <script>
     window.UPLOADCARE_PUBLIC_KEY = "4bdd873b526157f5445e";
   </script>
@@ -48,19 +47,21 @@
     </header>
 
     <section class="card" id="order">
-      <h2 style="margin:0 0 8px;">Request Quote</h2>
+      <h2 style="margin:0 0 8px;">Request a Quote</h2>
       <p style="margin:0 0 10px;">Send your details and upload your file below. We’ll reply with price and turnaround.</p>
 
-      <!-- Replace the action URL with your Formspree endpoint -->
       <form action="https://formspree.io/f/mbdjwbeq" method="POST">
+        <input type="hidden" name="_subject" value="New 3D Print Order Request (Website)">
+        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
+
         <div class="row">
           <div>
             <label for="name">Full name</label>
             <input id="name" name="name" autocomplete="name" required>
           </div>
           <div>
-            <label for="phone">Phone</label>
-            <input id="phone" name="phone" autocomplete="tel" required>
+            <label for="phone">Phone (preferred)</label>
+            <input id="phone" name="phone" autocomplete="tel">
           </div>
         </div>
 
@@ -71,10 +72,9 @@
         <input id="suburb" name="suburb" required>
 
         <label for="notes">Notes (optional)</label>
-        <textarea id="notes" name="notes" placeholder="Quantity, material preference (if any), use case, etc."></textarea>
+        <textarea id="notes" name="notes" placeholder="Quantity, material preference (if any), deadline, use case, etc."></textarea>
 
         <label>Upload file (STL / 3MF / STEP preferred)</label>
-        <!-- Uploadcare widget -->
         <input
           type="hidden"
           role="uploadcare-uploader"
@@ -89,7 +89,7 @@
           By submitting, you confirm you have rights to the file and that we are printing from your supplied design.
         </p>
 
-        <button class="btn" type="submit">Submit Quote</button>
+        <button class="btn" type="submit">Request Quote</button>
       </form>
     </section>
 
