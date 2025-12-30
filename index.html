@@ -12,74 +12,50 @@
     :root { --max: 820px; --text:#111; --muted:#555; --line:#e7e7e7; }
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; color:var(--text); background:#fff; }
     .wrap { max-width:var(--max); margin:0 auto; padding:28px 16px 60px; }
+
     header { text-align:center; padding:10px 0 18px; border-bottom:1px solid var(--line); }
-    img.logo { width:110px; height:auto; display:block; margin:0 auto 10px; }
-    h1 { margin:6px 0 4px; font-size:28px; }
+    img.logo { width:120px; height:auto; display:block; margin:0 auto 10px; }
+    h1 { margin:6px 0 4px; font-size:30px; }
     p { margin:8px 0; color:var(--muted); line-height:1.5; }
+    .fine { font-size:12px; color:#666; margin-top:10px; }
+
     .card { margin-top:22px; border:1px solid var(--line); border-radius:14px; padding:18px; }
     label { display:block; font-weight:600; margin:12px 0 6px; }
     input, textarea { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:10px; font:inherit; }
     textarea { min-height:92px; resize:vertical; }
     .row { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
     @media (max-width: 680px) { .row { grid-template-columns: 1fr; } }
-    .btn { margin-top:14px; width:100%; padding:12px 14px; border:0; border-radius:12px; background:#111; color:#fff; font-weight:700; cursor:pointer; }
-    .fine { font-size:12px; color:#666; margin-top:10px; }
+
+    .btn { display:inline-block; width:100%; text-align:center; margin-top:14px; padding:12px 14px; border:0; border-radius:12px; background:#111; color:#fff; font-weight:700; cursor:pointer; text-decoration:none; }
+    .btn.secondary { background:#fff; color:#111; border:1px solid var(--line); }
+
     .hidden { display:none; }
-    .fb-fab {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 999;
-}
 
-.fb-fab a {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  border-radius: 999px;
-  background: #1877f2; /* Facebook blue */
-  color: #fff;
-  font-weight: 700;
-  font-size: 13px;
-  text-decoration: none;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-
-.fb-fab a:hover {
-  opacity: 0.92;
-}
-
+    /* Floating Facebook button */
+    .fab {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: #1877F2;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+    }
+    .fab svg { width: 18px; height: 18px; display:block; }
+    .fab:active { transform: translateY(1px); }
+    @media (max-width: 420px) { .fab span { display:none; } .fab { padding:12px; } }
   </style>
-
-<a
-  href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7"
-  target="_blank"
-  rel="noopener"
-  class="btn"
->
-  Upload File
-</a>
-
-<p class="fine">
-  Upload opens in a new tab. All common 3D file formats supported.
-</p>
 </head>
-
-<div class="fb-fab">
-  <a
-    href="https://m.me/precision3dprints"
-    target="_blank"
-    rel="noopener"
-    aria-label="Message us on Facebook"
-  >
-    Message us
-  </a>
-</div>
 
 <body>
   <div class="wrap">
-
     <header>
       <img class="logo" src="/logo.png" alt="Precision 3D Prints logo">
       <h1>Precision 3D Prints</h1>
@@ -92,10 +68,10 @@
 
     <section class="card" id="order">
       <h2 style="margin:0 0 8px;">Request a Quote</h2>
-      <p style="margin:0 0 10px;">Send your details and upload your file below. We’ll reply with price and turnaround.</p>
+      <p style="margin:0 0 10px;">Send your details below. Upload your file using the button and we’ll reply with price and turnaround.</p>
 
       <form action="https://formspree.io/f/xaqyvgeb" method="POST">
-        <input type="hidden" name="_subject" value="New 3D Print Order Request (Website)">
+        <input type="hidden" name="_subject" value="New 3D Print Quote Request (Website)">
         <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
         <input type="hidden" name="_next" value="https://precision3dprints.com.au/thanks.html">
 
@@ -119,17 +95,16 @@
         <label for="notes">Notes (optional)</label>
         <textarea id="notes" name="notes" placeholder="Quantity, material preference (if any), intended use, or anything else relevant."></textarea>
 
-        <label>Upload file (STL / 3MF / STEP preferred)</label>
-        <input
-          data-multiple="false"
-          data-clearable="true"
-          data-system-dialog="true"
-          data-validators="fileType"
-          data-file-types="stl 3mf step stp obj zip"
-        />
+        <label>Upload your file</label>
 
+        <!-- TODO: Replace the href with your Dropbox File Request link -->
+        <a class="btn secondary" href="https://www.dropbox.com/request/XXXXXXXX" target="_blank" rel="noopener">
+          Upload File (STL / STEP / 3MF / ZIP)
+        </a>
 
-
+        <p class="fine">
+          Upload opens in a new tab. After uploading, return here and click <strong>Request Quote</strong>.
+        </p>
 
         <p class="fine">
           By submitting, you confirm you have rights to the file and that we are printing from your supplied design.
@@ -143,6 +118,14 @@
       © <span id="y"></span> Precision 3D Prints • Adelaide, SA
     </p>
   </div>
+
+  <!-- Floating Facebook “Message us” button -->
+  <a class="fab" href="https://www.facebook.com/precison3dprints" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12z"/>
+    </svg>
+    <span>Message us</span>
+  </a>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
