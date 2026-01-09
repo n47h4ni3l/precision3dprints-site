@@ -1,32 +1,39 @@
 <!doctype html>
-<html lang="en-AU"><head>
+<html lang="en-AU">
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Precision 3D Prints | 3D Printing Adelaide</title>
-  <meta name="description" content="Precision 3D Prints provides professional 3D printing services in Adelaide. You supply the file; we print it fast and reliably." />
+  <title>Precision 3D Prints | Australia-wide 3D Printing (Printed in Adelaide)</title>
+  <meta name="description" content="Australia-wide 3D printing from your files. Printed locally in Adelaide and shipped nationwide. Upload your STL/STEP/3MF for a fast quote." />
   <link rel="canonical" href="https://precision3dprints.com.au/" />
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <style>
-    /* Fix sizing/overflow issues across browsers */
     *, *::before, *::after { box-sizing: border-box; }
 
-    :root { --max: 820px; --text:#111; --muted:#555; --line:#e7e7e7; }
+    :root { --max: 820px; --text:#111; --muted:#555; --line:#e7e7e7; --soft:#f7f7f7; }
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; color:var(--text); background:#fff; }
     .wrap { max-width:var(--max); margin:0 auto; padding:28px 16px 60px; }
 
-    /* Banner */
     header.banner { margin-bottom: 22px; text-align:center; padding:10px 0 18px; border-bottom:1px solid var(--line); }
     header.banner img { width: 100%; height: auto; border-radius: 14px; display:block; }
 
-    h1 { margin:6px 0 4px; font-size:30px; }
+    h1 { margin:14px 0 8px; font-size:32px; letter-spacing:-0.2px; }
+    h2 { margin:0 0 8px; }
     p { margin:8px 0; color:var(--muted); line-height:1.5; }
     .fine { font-size:12px; color:#666; margin-top:10px; }
+    .kicker { font-size:13px; color:#333; font-weight:700; margin:10px 0 6px; }
+    .pill {
+      display:inline-block; padding:6px 10px; border:1px solid var(--line);
+      border-radius:999px; font-size:12px; color:#333; background:#fff;
+      margin:6px 6px 0 0;
+    }
 
-    /* Card + form */
-    .card { margin-top:22px; border:1px solid var(--line); border-radius:14px; padding:18px; }
+    .card { margin-top:18px; border:1px solid var(--line); border-radius:14px; padding:18px; }
+    .card.soft { background:var(--soft); }
+
     label { display:block; font-weight:600; margin:12px 0 6px; }
 
     .row { display:grid; grid-template-columns: 1fr 1fr; gap:12px; min-width:0; }
@@ -69,7 +76,6 @@
 
     .hidden { display:none; }
 
-    /* Opening offer badge */
     .promo-badge {
       position: fixed;
       top: 16px;
@@ -83,7 +89,7 @@
       line-height: 1.3;
       box-shadow: 0 6px 18px rgba(0,0,0,0.25);
       z-index: 10000;
-      max-width: 220px;
+      max-width: 240px;
     }
     .promo-badge span {
       display:block;
@@ -95,7 +101,6 @@
       .promo-badge { top:10px; right:10px; font-size:12px; padding:8px 12px; }
     }
 
-    /* Floating action buttons */
     .fab-stack{
       position:fixed;
       right:18px;
@@ -130,24 +135,46 @@
 
 <body>
   <div class="promo-badge">
-  FREE SHIPPING
-  <span>Australia-wide • Opening celebration</span>
+    FREE SHIPPING
+    <span>Australia-wide • Opening celebration</span>
   </div>
 
-  
   <div class="wrap">
-  <header class="banner">
-  <img src="/banner.png" alt="Precision 3D Prints – 3D Printing Adelaide">
+    <header class="banner">
+      <img src="/banner.png" alt="Precision 3D Prints – Australia-wide 3D printing (Printed in Adelaide, SA)">
+      <h1>Australia-wide 3D printing from your files</h1>
       <p>
-        Professional 3D printing in Adelaide.
-        <strong>Print-only service</strong> - you supply the design/file, we print and finish it.
+        Upload your existing file (STL / STEP / 3MF) and we’ll provide a fast quote and turnaround.
+        <strong>Printed locally in Adelaide, shipped Australia-wide.</strong>
       </p>
-      <p class="fine">Fast quotes. Reliable output.</p>
+      <p class="fine">
+        Print-only service — you supply the file, we handle the printing and finishing.
+      </p>
+      <div class="kicker">Materials</div>
+      <div>
+        <span class="pill">PLA</span>
+        <span class="pill">PETG</span>
+        <span class="pill">ASA</span>
+        <span class="pill">TPU</span>
+      </div>
     </header>
 
+    <section class="card soft" aria-label="What we print">
+      <div class="kicker">Common jobs we print</div>
+      <p style="margin-top:6px;">
+        Replacement plastic parts, brackets and mounts, workshop and automotive accessories, prototypes and test parts,
+        desk and dashboard items, and small short-run prints.
+      </p>
+      <p class="fine" style="margin-top:8px;">
+        Not sure if your file is suitable? Upload it anyway — we’ll tell you before printing if anything needs changes.
+      </p>
+    </section>
+
     <section class="card" id="order">
-      <h2 style="margin:0 0 8px;">Request a Quote</h2>
-      <p style="margin:0 0 10px;">Send your details below. Upload your file using the button and we’ll reply with price and turnaround.</p>
+      <h2>Request a Quote</h2>
+      <p style="margin:0 0 10px;">
+        Send your details below, upload your file, then submit the form. We’ll reply with price, turnaround, and any material recommendations.
+      </p>
 
       <form action="https://formspree.io/f/xaqyvgeb" method="POST">
         <input type="hidden" name="_subject" value="New 3D Print Quote Request (Website)">
@@ -168,11 +195,19 @@
         <label for="email">Email</label>
         <input id="email" name="email" type="email" autocomplete="email" required>
 
-        <label for="suburb">Suburb (Adelaide)</label>
-        <input id="suburb" name="suburb" required>
+        <div class="row">
+          <div>
+            <label for="location">Suburb / Postcode (optional)</label>
+            <input id="location" name="location" placeholder="Helps with pickup or shipping estimates" autocomplete="postal-code">
+          </div>
+          <div>
+            <label for="delivery">Delivery preference</label>
+            <input id="delivery" name="delivery" placeholder="Shipping (Australia-wide) or Pickup (Adelaide)">
+          </div>
+        </div>
 
         <label for="notes">Notes (optional)</label>
-        <textarea id="notes" name="notes" placeholder="Quantity, material preference (if any), intended use, or anything else relevant."></textarea>
+        <textarea id="notes" name="notes" placeholder="Quantity, intended use, size constraints, preferred material (if any), or anything else relevant."></textarea>
 
         <label>Upload your file</label>
         <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
@@ -180,7 +215,8 @@
         </a>
 
         <p class="fine">
-          Upload opens in a new tab. After uploading, return here and click <strong>Request Quote</strong>.
+          Upload opens in a new tab. Once uploaded, return here and click <strong>Request Quote</strong>.
+          If you’re unsure whether the upload worked, mention the filename in the Notes box.
         </p>
 
         <p class="fine">
@@ -192,11 +228,10 @@
     </section>
 
     <p class="fine" style="text-align:center; margin-top:16px;">
-      © <span id="y"></span> Precision 3D Prints • Adelaide, SA
+      © <span id="y"></span> Precision 3D Prints • Printed in Adelaide, SA • Shipping Australia-wide
     </p>
   </div>
 
-  <!-- Floating buttons (Email + Facebook) -->
   <div class="fab-stack">
     <a class="fab email" href="mailto:sales@precision3dprints.com.au" aria-label="Email Precision 3D Prints">
       <svg viewBox="0 0 24 24" aria-hidden="true">
