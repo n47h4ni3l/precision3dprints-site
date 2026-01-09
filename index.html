@@ -4,19 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Precision 3D Prints | Australia-wide 3D Printing (Printed in Adelaide)</title>
+  <title>Precision 3D Prints | Australia-wide 3D Printing</title>
   <meta name="description" content="Australia-wide 3D printing from your files. Printed locally in Adelaide and shipped nationwide. Upload your STL/STEP/3MF for a fast quote." />
-  <div class="trust" aria-label="Google rating">
-  <!-- Replace the href below with your actual Google review link -->
-  <a href="https://g.page/r/CQpCtyWE9chVEAI/review" target="_blank" rel="noopener">
-    <span class="stars" aria-hidden="true">★★★★★</span>
-    <div>
-      <div style="font-weight:800;">5.0 on Google</div>
-      <small>Read reviews / leave a review</small>
-    </div>
-  </a>
-  </div>
-
   <link rel="canonical" href="https://precision3dprints.com.au/" />
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -36,9 +25,15 @@
     p { margin:8px 0; color:var(--muted); line-height:1.5; }
     .fine { font-size:12px; color:#666; margin-top:10px; }
     .kicker { font-size:13px; color:#333; font-weight:700; margin:10px 0 6px; }
+
     .pill {
-      display:inline-block; padding:6px 10px; border:1px solid var(--line);
-      border-radius:999px; font-size:12px; color:#333; background:#fff;
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      font-size:12px;
+      color:#333;
+      background:#fff;
       margin:6px 6px 0 0;
     }
 
@@ -87,37 +82,7 @@
 
     .hidden { display:none; }
 
-    /* Trust / rating card */
-    .trust {
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-      margin-top:10px;
-    }
-
-    .trust a{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:#fff;
-      text-decoration:none;
-      color:var(--text);
-    }
-
-    .stars{
-      letter-spacing:1px;
-      font-size:14px;
-    }
-    
-    .trust small{
-      color:var(--muted);
-      font-size:12px;
-    }
-
+    /* Opening offer badge (top-right) */
     .promo-badge {
       position: fixed;
       top: 16px;
@@ -139,10 +104,12 @@
       font-size:12px;
       opacity:0.95;
     }
+    /* Reduce clutter on mobile: hide promo badge */
     @media (max-width: 480px) {
-      .promo-badge { top:10px; right:10px; font-size:12px; padding:8px 12px; }
+      .promo-badge { display:none; }
     }
 
+    /* Floating action buttons (bottom-right) */
     .fab-stack{
       position:fixed;
       right:18px;
@@ -172,10 +139,52 @@
       .fab span{ display:none; }
       .fab{ padding:12px; }
     }
+
+    /* Floating Google reviews chip (top-left) */
+    .google-chip{
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 10001;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+    .google-chip .stars{
+      letter-spacing: 1px;
+      font-size: 12px;
+      color: #111;
+    }
+    .google-chip small{
+      display:block;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.1;
+    }
+    @media (max-width: 480px){
+      .google-chip{ top:10px; left:10px; padding:8px 10px; gap:8px; }
+    }
   </style>
 </head>
 
 <body>
+  <!-- Floating Google reviews chip (top-left) -->
+  <a class="google-chip" href="https://g.page/r/CQpCtyWE9chVEAI/review" target="_blank" rel="noopener" aria-label="Read or leave a Google review">
+    <span class="stars" aria-hidden="true">★★★★★</span>
+    <div>
+      <div style="font-weight:800; font-size:12px;">Google Reviews</div>
+      <small>Read / leave a review</small>
+    </div>
+  </a>
+
+  <!-- Promo badge (top-right) -->
   <div class="promo-badge">
     FREE SHIPPING
     <span>Australia-wide • Opening celebration</span>
@@ -184,27 +193,21 @@
   <div class="wrap">
     <header class="banner">
       <img src="/banner.png" alt="Precision 3D Prints – Australia-wide 3D printing (Printed in Adelaide, SA)">
+
       <h1>Australia-wide 3D printing from your files</h1>
+
       <p>
-        Upload your existing file (STL / STEP / 3MF) and we’ll provide a fast quote and turnaround.
+        Upload your file (STL / STEP / 3MF) for a fast quote and turnaround.
         <strong>Printed locally in Adelaide, shipped Australia-wide.</strong>
       </p>
+
       <p class="fine">
         Print-only service - you supply the file, we handle the printing and finishing.
       </p>
-      <div class="kicker">Materials</div>
-    <div>
-      <span class="pill">PLA</span>
-      <span class="pill">PETG</span>
-      <span class="pill">ASA</span>
-      <span class="pill">TPU</span>
-      <span class="pill">…and more on request</span>
-    </div>
-    <p class="fine" style="margin-top:8px;">
-      Need a specific colour or material? If it’s compatible with our equipment, we can source it and quote accordingly.
-    </p>
 
-
+      <p class="fine" style="margin-top:10px;">
+        Materials and colours available on request. If it’s compatible with our equipment, we can source it and quote accordingly.
+      </p>
     </header>
 
     <section class="card soft" aria-label="What we print">
