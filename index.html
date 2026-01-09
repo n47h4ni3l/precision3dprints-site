@@ -26,17 +26,6 @@
     .fine { font-size:12px; color:#666; margin-top:10px; }
     .kicker { font-size:13px; color:#333; font-weight:700; margin:10px 0 6px; }
 
-    .pill {
-      display:inline-block;
-      padding:6px 10px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      font-size:12px;
-      color:#333;
-      background:#fff;
-      margin:6px 6px 0 0;
-    }
-
     .card { margin-top:18px; border:1px solid var(--line); border-radius:14px; padding:18px; }
     .card.soft { background:var(--soft); }
 
@@ -46,7 +35,7 @@
     .row > div { min-width:0; }
     @media (max-width: 680px) { .row { grid-template-columns: 1fr; } }
 
-    input, textarea {
+    input, textarea, select {
       width:100%;
       max-width:100%;
       min-width:0;
@@ -59,7 +48,7 @@
     }
     textarea { min-height:92px; resize:vertical; }
 
-    input:focus, textarea:focus {
+    input:focus, textarea:focus, select:focus {
       border-color:#bbb;
       box-shadow:0 0 0 3px rgba(0,0,0,0.08);
     }
@@ -81,6 +70,7 @@
     .btn.secondary { background:#fff; color:#111; border:1px solid var(--line); }
 
     .hidden { display:none; }
+    .hint { margin-top:6px; font-size:12px; color:#666; }
 
     /* Opening offer badge (top-right) */
     .promo-badge {
@@ -104,10 +94,7 @@
       font-size:12px;
       opacity:0.95;
     }
-    /* Reduce clutter on mobile: hide promo badge */
-    @media (max-width: 480px) {
-      .promo-badge { display:none; }
-    }
+    @media (max-width: 480px) { .promo-badge { display:none; } }
 
     /* Floating action buttons (bottom-right) */
     .fab-stack{
@@ -134,7 +121,6 @@
     .fab.email{ background:#1f1f1f; }
     .fab.fb{ background:#1877F2; }
     .fab:active { transform: translateY(1px); }
-
     @media (max-width:420px){
       .fab span{ display:none; }
       .fab{ padding:12px; }
@@ -202,7 +188,7 @@
       </p>
 
       <p class="fine">
-        Print-only service - you supply the file, we handle the printing and finishing.
+        Print-only service — you supply the file, we handle the printing and finishing.
       </p>
 
       <p class="fine" style="margin-top:10px;">
@@ -217,7 +203,7 @@
         desk and dashboard items, and small short-run prints.
       </p>
       <p class="fine" style="margin-top:8px;">
-        Not sure if your file is suitable? Upload it anyway - we’ll tell you before printing if anything needs changes.
+        Not sure if your file is suitable? Upload it anyway — we’ll tell you before printing if anything needs changes.
       </p>
     </section>
 
@@ -248,17 +234,61 @@
 
         <div class="row">
           <div>
-            <label for="location">Suburb / Postcode (optional)</label>
-            <input id="location" name="location" placeholder="Helps with pickup or shipping estimates" autocomplete="postal-code">
-          </div>
-          <div>
             <label for="delivery">Delivery preference</label>
-            <input id="delivery" name="delivery" placeholder="Shipping (Australia-wide) or Pickup (Adelaide)">
+            <select id="delivery" name="delivery" required>
+              <option value="" selected disabled>Select…</option>
+              <option value="Shipping (Australia-wide)">Shipping (Australia-wide)</option>
+              <option value="Pickup (Adelaide)">Pickup (Adelaide)</option>
+            </select>
+            <div class="hint">Choose shipping or pickup so we can quote correctly.</div>
+          </div>
+
+          <div>
+            <label for="qty">Quantity</label>
+            <select id="qty" name="quantity" required>
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6-10">6–10</option>
+              <option value="11-25">11–25</option>
+              <option value="26+">26+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="material">Material preference (optional)</label>
+            <select id="material" name="material_preference">
+              <option value="" selected>No preference (recommend)</option>
+              <option value="PLA">PLA</option>
+              <option value="PETG">PETG</option>
+              <option value="ASA">ASA</option>
+              <option value="TPU">TPU</option>
+              <option value="Other (please specify in notes)">Other (specify in notes)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="colour">Colour preference (optional)</label>
+            <select id="colour" name="colour_preference">
+              <option value="" selected>No preference</option>
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+              <option value="Grey">Grey</option>
+              <option value="Red">Red</option>
+              <option value="Blue">Blue</option>
+              <option value="Green">Green</option>
+              <option value="Clear / Transparent">Clear / Transparent</option>
+              <option value="Other (please specify in notes)">Other (specify in notes)</option>
+            </select>
           </div>
         </div>
 
         <label for="notes">Notes (optional)</label>
-        <textarea id="notes" name="notes" placeholder="Quantity, intended use, size constraints, preferred material (if any), or anything else relevant."></textarea>
+        <textarea id="notes" name="notes" placeholder="Intended use, strength requirements, size constraints, finish preferences, or anything else relevant."></textarea>
 
         <label>Upload your file</label>
         <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
@@ -269,6 +299,42 @@
           Upload opens in a new tab. Once uploaded, return here and click <strong>Request Quote</strong>.
           If you’re unsure whether the upload worked, mention the filename in the Notes box.
         </p>
+
+        <!-- Shipping fields (shown only when Shipping selected) -->
+        <div id="shippingFields" class="hidden" style="margin-top:12px;">
+          <div class="kicker">Shipping address</div>
+
+          <label for="address1">Address line 1</label>
+          <input id="address1" name="address_line_1" placeholder="Street address">
+
+          <label for="address2">Address line 2 (optional)</label>
+          <input id="address2" name="address_line_2" placeholder="Unit / Apartment / Level">
+
+          <div class="row">
+            <div>
+              <label for="suburb">Suburb</label>
+              <input id="suburb" name="suburb">
+            </div>
+            <div>
+              <label for="state">State</label>
+              <select id="state" name="state">
+                <option value="" selected disabled>Select…</option>
+                <option value="SA">SA</option>
+                <option value="VIC">VIC</option>
+                <option value="NSW">NSW</option>
+                <option value="QLD">QLD</option>
+                <option value="WA">WA</option>
+                <option value="TAS">TAS</option>
+                <option value="ACT">ACT</option>
+                <option value="NT">NT</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="postcode">Postcode</label>
+          <input id="postcode" name="postcode" inputmode="numeric" pattern="[0-9]{4}" placeholder="e.g. 5000">
+          <div class="hint">We only request a full address for shipping quotes. Pickup customers can skip this section.</div>
+        </div>
 
         <p class="fine">
           By submitting, you confirm you have rights to the file and that we are printing from your supplied design.
@@ -301,6 +367,25 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    const deliveryEl = document.getElementById("delivery");
+    const shippingFields = document.getElementById("shippingFields");
+
+    function syncShippingFields(){
+      const v = deliveryEl.value || "";
+      const isShipping = v.toLowerCase().includes("shipping");
+      shippingFields.classList.toggle("hidden", !isShipping);
+
+      // Make shipping fields required only when shipping
+      const req = isShipping;
+      ["address1","suburb","state","postcode"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.required = req;
+      });
+    }
+
+    deliveryEl.addEventListener("change", syncShippingFields);
+    syncShippingFields();
   </script>
 </body>
 </html>
