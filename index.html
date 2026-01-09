@@ -6,6 +6,17 @@
 
   <title>Precision 3D Prints | Australia-wide 3D Printing (Printed in Adelaide)</title>
   <meta name="description" content="Australia-wide 3D printing from your files. Printed locally in Adelaide and shipped nationwide. Upload your STL/STEP/3MF for a fast quote." />
+  <div class="trust" aria-label="Google rating">
+  <!-- Replace the href below with your actual Google review link -->
+  <a href="https://g.page/r/CQpCtyWE9chVEAI/review" target="_blank" rel="noopener">
+    <span class="stars" aria-hidden="true">★★★★★</span>
+    <div>
+      <div style="font-weight:800;">5.0 on Google</div>
+      <small>Read reviews / leave a review</small>
+    </div>
+  </a>
+  </div>
+
   <link rel="canonical" href="https://precision3dprints.com.au/" />
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -75,6 +86,37 @@
     .btn.secondary { background:#fff; color:#111; border:1px solid var(--line); }
 
     .hidden { display:none; }
+
+    /* Trust / rating card */
+    .trust {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top:10px;
+    }
+
+    .trust a{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      text-decoration:none;
+      color:var(--text);
+    }
+
+    .stars{
+      letter-spacing:1px;
+      font-size:14px;
+    }
+    
+    .trust small{
+      color:var(--muted);
+      font-size:12px;
+    }
 
     .promo-badge {
       position: fixed;
@@ -151,12 +193,19 @@
         Print-only service — you supply the file, we handle the printing and finishing.
       </p>
       <div class="kicker">Materials</div>
-      <div>
-        <span class="pill">PLA</span>
-        <span class="pill">PETG</span>
-        <span class="pill">ASA</span>
-        <span class="pill">TPU</span>
-      </div>
+      <div class="kicker">Materials</div>
+    <div>
+      <span class="pill">PLA</span>
+      <span class="pill">PETG</span>
+      <span class="pill">ASA</span>
+      <span class="pill">TPU</span>
+      <span class="pill">…and more on request</span>
+    </div>
+    <p class="fine" style="margin-top:8px;">
+      Need a specific colour or material? If it’s compatible with our equipment, we can source it and quote accordingly.
+    </p>
+
+
     </header>
 
     <section class="card soft" aria-label="What we print">
