@@ -72,6 +72,21 @@
     .hidden { display:none; }
     .hint { margin-top:6px; font-size:12px; color:#666; }
 
+    /* Trust line above form */
+    .trust-line{
+      margin-top:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      color:#333;
+      font-size:13px;
+      font-weight:700;
+      text-align:center;
+    }
+    .trust-line span{ font-weight:700; }
+    .trust-line .dot{ opacity:.55; padding:0 8px; }
+
     /* Promo badge */
     .promo-badge {
       position: fixed;
@@ -88,13 +103,11 @@
       z-index: 10000;
       max-width: 240px;
     }
-    
     .promo-badge .title {
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.2px;
     }
-    
     .promo-badge .sub {
       display: block;
       font-size: 12px;
@@ -102,7 +115,6 @@
       opacity: 0.95;
       margin-top: 2px;
     }
-    
     /* Mobile: move to bottom centre */
     @media (max-width: 480px) {
       .promo-badge {
@@ -116,7 +128,6 @@
         max-width: calc(100% - 32px);
       }
     }
-
 
     /* Floating action buttons (bottom-right) */
     .fab-stack{
@@ -192,13 +203,11 @@
     </div>
   </a>
 
-  <!-- Promo badge (top-right) -->
-<div class="promo-badge">
-  <span class="title">Free shipping</span>
-  <span class="sub">Australia-wide</span>
-  <span class="sub">Opening celebration</span>
-</div>
-
+  <!-- Promo badge -->
+  <div class="promo-badge">
+    <span class="title">Free shipping Australia-wide</span>
+    <span class="sub">Opening celebration — give us a go</span>
+  </div>
 
   <div class="wrap">
     <header class="banner">
@@ -207,8 +216,8 @@
       <h1>Australia-wide 3D printing from your files</h1>
 
       <p>
-        Upload your file (STL / STEP / 3MF) for a fast quote and turnaround.
-        <strong>Printed locally in Adelaide, shipped Australia-wide.</strong>
+        Upload your file (STL / STEP / 3MF) for a fast, no-obligation quote.
+        <strong>Ships Australia-wide. Printed in Adelaide.</strong>
       </p>
 
       <p class="fine">
@@ -219,6 +228,15 @@
         Want a specific colour or specialty filament? Tell us what you want (or paste a link) and we’ll source it if compatible.
       </p>
     </header>
+
+    <!-- (6) Who this is for / perfect for -->
+    <section class="card soft" aria-label="Perfect for">
+      <div class="kicker">Perfect for</div>
+      <p style="margin-top:6px;">
+        DIY repairs, brackets and mounts, workshop and automotive parts, prototypes and test-fit pieces, desk and dashboard items,
+        and small short-run prints.
+      </p>
+    </section>
 
     <section class="card soft" aria-label="What we print">
       <div class="kicker">Common jobs we print</div>
@@ -233,7 +251,13 @@
 
     <section class="card" id="order">
       <h2>Request a Quote</h2>
-      <p style="margin:0 0 10px;">
+
+      <!-- (1) Trust line above form -->
+      <div class="trust-line" aria-label="Key service guarantees">
+        <span>No minimum order</span><span class="dot">•</span><span>Fast turnaround</span><span class="dot">•</span><span>Printed in Australia</span>
+      </div>
+
+      <p style="margin:10px 0 10px;">
         Send your details below, upload your file, then submit the form. We’ll reply with price, turnaround, and any material recommendations.
       </p>
 
@@ -327,8 +351,13 @@
           Upload File (STL / STEP / 3MF / ZIP)
         </a>
 
+        <!-- (4) Reassurance under upload -->
+        <p class="fine" style="margin-top:10px;">
+          Not sure if your file is ready? Upload it anyway — we’ll check it before printing and let you know if anything needs changes.
+        </p>
+
         <p class="fine">
-          Upload opens in a new tab. Once uploaded, return here and click <strong>Request Quote</strong>.
+          Upload opens in a new tab. Once uploaded, return here and click <strong>Get a fast quote</strong>.
           If you’re unsure whether the upload worked, mention the filename in the Notes box.
         </p>
 
@@ -372,7 +401,8 @@
           By submitting, you confirm you have rights to the file and that we are printing from your supplied design.
         </p>
 
-        <button class="btn" type="submit">Request Quote</button>
+        <!-- (2) Stronger CTA -->
+        <button class="btn" type="submit">Get a fast quote</button>
       </form>
     </section>
 
