@@ -13,7 +13,23 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; }
 
-    :root { --max: 820px; --text:#111; --muted:#555; --line:#e7e7e7; --soft:#f7f7f7; }
+    :root {
+      --max: 820px;
+      --text:#111;
+      --muted:#555;
+      --line:#e7e7e7;
+      --soft:#f7f7f7;
+
+      /* Brand / system colours */
+      --brand: #f57c00;          /* brand orange */
+      --brand-dark: #e56f00;     /* hover/darker orange */
+      --brand-ring: rgba(245,124,0,0.22);
+
+      /* New: subtle section tint (C) */
+      --section-bg: #faf8f6;     /* very light warm tint */
+      --section-border: #efe7de;
+    }
+
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; color:var(--text); background:#fff; }
     .wrap { max-width:var(--max); margin:0 auto; padding:28px 16px 60px; }
 
@@ -26,7 +42,7 @@
     .fine { font-size:12px; color:#666; margin-top:10px; }
     .kicker { font-size:13px; color:#333; font-weight:700; margin:10px 0 6px; }
 
-    .card { margin-top:18px; border:1px solid var(--line); border-radius:14px; padding:18px; }
+    .card { margin-top:18px; border:1px solid var(--line); border-radius:14px; padding:18px; background:#fff; }
     .card.soft { background:var(--soft); }
 
     label { display:block; font-weight:600; margin:12px 0 6px; }
@@ -48,11 +64,13 @@
     }
     textarea { min-height:92px; resize:vertical; }
 
+    /* Stronger, brand-aligned focus state */
     input:focus, textarea:focus, select:focus {
-      border-color:#bbb;
-      box-shadow:0 0 0 3px rgba(0,0,0,0.08);
+      border-color: rgba(245,124,0,0.55);
+      box-shadow: 0 0 0 3px var(--brand-ring);
     }
 
+    /* Buttons */
     .btn {
       display:inline-block;
       width:100%;
@@ -61,31 +79,27 @@
       padding:12px 14px;
       border:0;
       border-radius:12px;
-      background:#111;
+      background: var(--brand);
       color:#fff;
-      font-weight:700;
+      font-weight:800;
       cursor:pointer;
       text-decoration:none;
+      box-shadow: 0 10px 26px rgba(0,0,0,.10);
     }
-    .btn.secondary { background:#fff; color:#111; border:1px solid var(--line); }
+    .btn:hover { background: var(--brand-dark); }
+    .btn:active { transform: translateY(1px); }
+
+    .btn.secondary {
+      background:#fff;
+      color:#111;
+      border:1px solid var(--line);
+      box-shadow:none;
+      font-weight:700;
+    }
+    .btn.secondary:hover { border-color:#d8d8d8; }
 
     .hidden { display:none; }
     .hint { margin-top:6px; font-size:12px; color:#666; }
-
-    /* Trust line above form */
-    .trust-line{
-      margin-top:10px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:#fff;
-      color:#333;
-      font-size:13px;
-      font-weight:700;
-      text-align:center;
-    }
-    .trust-line span{ font-weight:700; }
-    .trust-line .dot{ opacity:.55; padding:0 8px; }
 
     /* Promo badge */
     .promo-badge {
@@ -101,13 +115,16 @@
       line-height: 1.3;
       box-shadow: 0 8px 22px rgba(0,0,0,0.25);
       z-index: 10000;
-      max-width: 240px;
+      max-width: 260px;
     }
+
     .promo-badge .title {
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.2px;
+      text-transform: none;
     }
+
     .promo-badge .sub {
       display: block;
       font-size: 12px;
@@ -115,6 +132,7 @@
       opacity: 0.95;
       margin-top: 2px;
     }
+
     /* Mobile: move to bottom centre */
     @media (max-width: 480px) {
       .promo-badge {
@@ -127,6 +145,9 @@
         text-align: center;
         max-width: calc(100% - 32px);
       }
+      .promo-badge .sub { display:inline; }
+      .promo-badge .sub + .sub::before { content:" • "; }
+      .promo-badge .sub:last-child { display:block; margin-top:2px; }
     }
 
     /* Floating action buttons (bottom-right) */
@@ -147,7 +168,7 @@
       border-radius:999px;
       color:#fff;
       text-decoration:none;
-      font-weight:700;
+      font-weight:800;
       box-shadow:0 10px 26px rgba(0,0,0,.18);
     }
     .fab svg{ width:18px; height:18px; display:block; }
@@ -190,6 +211,22 @@
     @media (max-width: 480px){
       .google-chip{ top:10px; left:10px; padding:8px 10px; gap:8px; }
     }
+
+    /* New: Quote section background panel (C) */
+    .quote-panel {
+      margin-top:18px;
+      padding:14px;
+      border-radius:16px;
+      background: var(--section-bg);
+      border: 1px solid var(--section-border);
+    }
+    /* Make panel look clean on small screens */
+    @media (max-width: 480px){
+      .quote-panel { padding:12px; }
+    }
+
+    /* Optional: make section headings feel more “brand” without clutter */
+    #order h2 { letter-spacing: -0.2px; }
   </style>
 </head>
 
@@ -206,7 +243,7 @@
   <!-- Promo badge -->
   <div class="promo-badge">
     <span class="title">Free shipping Australia-wide</span>
-    <span class="sub">Opening celebration — give us a go</span>
+    <span class="sub">Opening celebration - give us a go</span>
   </div>
 
   <div class="wrap">
@@ -216,27 +253,18 @@
       <h1>Australia-wide 3D printing from your files</h1>
 
       <p>
-        Upload your file (STL / STEP / 3MF) for a fast, no-obligation quote.
-        <strong>Ships Australia-wide. Printed in Adelaide.</strong>
+        Upload your file (STL / STEP / 3MF) for a fast quote and turnaround.
+        <strong>Printed locally in Adelaide, shipped Australia-wide.</strong>
       </p>
 
       <p class="fine">
-        Print-only service — you supply the file, we handle the printing and finishing.
+        Print-only service - you supply the file, we handle the printing and finishing.
       </p>
 
       <p class="fine" style="margin-top:10px;">
         Want a specific colour or specialty filament? Tell us what you want (or paste a link) and we’ll source it if compatible.
       </p>
     </header>
-
-    <!-- (6) Who this is for / perfect for -->
-    <section class="card soft" aria-label="Perfect for">
-      <div class="kicker">Perfect for</div>
-      <p style="margin-top:6px;">
-        DIY repairs, brackets and mounts, workshop and automotive parts, prototypes and test-fit pieces, desk and dashboard items,
-        and small short-run prints.
-      </p>
-    </section>
 
     <section class="card soft" aria-label="What we print">
       <div class="kicker">Common jobs we print</div>
@@ -245,166 +273,163 @@
         desk and dashboard items, and small short-run prints.
       </p>
       <p class="fine" style="margin-top:8px;">
-        Not sure if your file is suitable? Upload it anyway — we’ll tell you before printing if anything needs changes.
+        Not sure if your file is suitable? Upload it anyway - we’ll tell you before printing if anything needs changes.
       </p>
     </section>
 
-    <section class="card" id="order">
-      <h2>Request a Quote</h2>
+    <!-- New: Quote panel background (C) -->
+    <div class="quote-panel">
+      <section class="card" id="order" style="margin-top:0;">
+        <h2>Request a Quote</h2>
 
-      <!-- (1) Trust line above form -->
-      <div class="trust-line" aria-label="Key service guarantees">
-        <span>No minimum order</span><span class="dot">•</span><span>Fast turnaround</span><span class="dot">•</span><span>Printed in Australia</span>
-      </div>
-
-      <p style="margin:10px 0 10px;">
-        Send your details below, upload your file, then submit the form. We’ll reply with price, turnaround, and any material recommendations.
-      </p>
-
-      <form action="https://formspree.io/f/xaqyvgeb" method="POST">
-        <input type="hidden" name="_subject" value="New 3D Print Quote Request (Website)">
-        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
-        <input type="hidden" name="_next" value="https://precision3dprints.com.au/thanks.html">
-
-        <div class="row">
-          <div>
-            <label for="name">Full name</label>
-            <input id="name" name="name" autocomplete="name" required>
-          </div>
-          <div>
-            <label for="phone">Phone (optional)</label>
-            <input id="phone" name="phone" autocomplete="tel">
-          </div>
-        </div>
-
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" autocomplete="email" required>
-
-        <div class="row">
-          <div>
-            <label for="delivery">Delivery preference</label>
-            <select id="delivery" name="delivery" required>
-              <option value="" selected disabled>Select…</option>
-              <option value="Shipping (Australia-wide)">Shipping (Australia-wide)</option>
-              <option value="Pickup (Adelaide)">Pickup (Adelaide)</option>
-            </select>
-            <div class="hint">Choose shipping or pickup so we can quote correctly.</div>
-          </div>
-
-          <div>
-            <label for="qty">Quantity</label>
-            <select id="qty" name="quantity" required>
-              <option value="1" selected>1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6-10">6–10</option>
-              <option value="11-25">11–25</option>
-              <option value="26+">26+</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label for="material">Material preference (optional)</label>
-            <select id="material" name="material_preference">
-              <option value="" selected>No preference (recommend)</option>
-              <option value="PLA">PLA</option>
-              <option value="PETG">PETG</option>
-              <option value="ASA">ASA</option>
-              <option value="TPU">TPU</option>
-              <option value="Other (please specify in notes)">Other (specify in notes)</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="colour">Colour / finish (optional)</label>
-            <select id="colour" name="colour_preference">
-              <option value="" selected>No preference (we’ll recommend)</option>
-              <option value="Black">Black</option>
-              <option value="White">White</option>
-              <option value="Grey">Grey</option>
-              <option value="Clear / Transparent">Clear / Transparent</option>
-              <option value="Any colour / specialty filament (specify below)">Any colour / specialty filament (specify below)</option>
-            </select>
-
-            <div id="colourDetailsWrap" class="hidden">
-              <label for="colour_details" style="margin-top:10px;">Colour / filament details</label>
-              <input
-                id="colour_details"
-                name="colour_details"
-                placeholder="Example: ‘ASA – Army Green’, ‘Wood PLA’, ‘Marble PLA’, ‘Silk Gold’, or paste a product link"
-                autocomplete="off"
-              />
-              <div class="hint">We can source thousands of colours and specialty filaments (where compatible) and quote accordingly.</div>
-            </div>
-          </div>
-        </div>
-
-        <label for="notes">Notes (optional)</label>
-        <textarea id="notes" name="notes" placeholder="Intended use, strength requirements, size constraints, finish preferences, or anything else relevant."></textarea>
-
-        <label>Upload your file</label>
-        <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
-          Upload File (STL / STEP / 3MF / ZIP)
-        </a>
-
-        <!-- (4) Reassurance under upload -->
-        <p class="fine" style="margin-top:10px;">
-          Not sure if your file is ready? Upload it anyway — we’ll check it before printing and let you know if anything needs changes.
+        <!-- small trust line (kept subtle) -->
+        <p class="fine" style="margin:6px 0 10px; text-align:center;">
+          No minimum order • Fast turnaround • Printed in Australia
         </p>
 
-        <p class="fine">
-          Upload opens in a new tab. Once uploaded, return here and click <strong>Get a fast quote</strong>.
-          If you’re unsure whether the upload worked, mention the filename in the Notes box.
+        <p style="margin:0 0 10px;">
+          Send your details below, upload your file, then submit the form. We’ll reply with price, turnaround, and any material recommendations.
         </p>
 
-        <!-- Shipping fields (shown only when Shipping selected) -->
-        <div id="shippingFields" class="hidden" style="margin-top:12px;">
-          <div class="kicker">Shipping address</div>
-
-          <label for="address1">Address line 1</label>
-          <input id="address1" name="address_line_1" placeholder="Street address">
-
-          <label for="address2">Address line 2 (optional)</label>
-          <input id="address2" name="address_line_2" placeholder="Unit / Apartment / Level">
+        <form action="https://formspree.io/f/xaqyvgeb" method="POST">
+          <input type="hidden" name="_subject" value="New 3D Print Quote Request (Website)">
+          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="_next" value="https://precision3dprints.com.au/thanks.html">
 
           <div class="row">
             <div>
-              <label for="suburb">Suburb</label>
-              <input id="suburb" name="suburb">
+              <label for="name">Full name</label>
+              <input id="name" name="name" autocomplete="name" required>
             </div>
             <div>
-              <label for="state">State</label>
-              <select id="state" name="state">
+              <label for="phone">Phone (optional)</label>
+              <input id="phone" name="phone" autocomplete="tel">
+            </div>
+          </div>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+
+          <div class="row">
+            <div>
+              <label for="delivery">Delivery preference</label>
+              <select id="delivery" name="delivery" required>
                 <option value="" selected disabled>Select…</option>
-                <option value="SA">SA</option>
-                <option value="VIC">VIC</option>
-                <option value="NSW">NSW</option>
-                <option value="QLD">QLD</option>
-                <option value="WA">WA</option>
-                <option value="TAS">TAS</option>
-                <option value="ACT">ACT</option>
-                <option value="NT">NT</option>
+                <option value="Shipping (Australia-wide)">Shipping (Australia-wide)</option>
+                <option value="Pickup (Adelaide)">Pickup (Adelaide)</option>
+              </select>
+              <div class="hint">Choose shipping or pickup so we can quote correctly.</div>
+            </div>
+
+            <div>
+              <label for="qty">Quantity</label>
+              <select id="qty" name="quantity" required>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6-10">6–10</option>
+                <option value="11-25">11–25</option>
+                <option value="26+">26+</option>
               </select>
             </div>
           </div>
 
-          <label for="postcode">Postcode</label>
-          <input id="postcode" name="postcode" inputmode="numeric" pattern="[0-9]{4}" placeholder="e.g. 5000">
-          <div class="hint">We only request a full address for shipping quotes. Pickup customers can skip this section.</div>
-        </div>
+          <div class="row">
+            <div>
+              <label for="material">Material preference (optional)</label>
+              <select id="material" name="material_preference">
+                <option value="" selected>No preference (recommend)</option>
+                <option value="PLA">PLA</option>
+                <option value="PETG">PETG</option>
+                <option value="ASA">ASA</option>
+                <option value="TPU">TPU</option>
+                <option value="Other (please specify in notes)">Other (specify in notes)</option>
+              </select>
+            </div>
 
-        <p class="fine">
-          By submitting, you confirm you have rights to the file and that we are printing from your supplied design.
-        </p>
+            <div>
+              <label for="colour">Colour / finish (optional)</label>
+              <select id="colour" name="colour_preference">
+                <option value="" selected>No preference (we’ll recommend)</option>
+                <option value="Black">Black</option>
+                <option value="White">White</option>
+                <option value="Grey">Grey</option>
+                <option value="Clear / Transparent">Clear / Transparent</option>
+                <option value="Any colour / specialty filament (specify below)">Any colour / specialty filament (specify below)</option>
+              </select>
 
-        <!-- (2) Stronger CTA -->
-        <button class="btn" type="submit">Get a fast quote</button>
-      </form>
-    </section>
+              <div id="colourDetailsWrap" class="hidden">
+                <label for="colour_details" style="margin-top:10px;">Colour / filament details</label>
+                <input
+                  id="colour_details"
+                  name="colour_details"
+                  placeholder="Example: ‘ASA – Army Green’, ‘Wood PLA’, ‘Marble PLA’, ‘Silk Gold’, or paste a product link"
+                  autocomplete="off"
+                />
+                <div class="hint">We can source thousands of colours and specialty filaments (where compatible) and quote accordingly.</div>
+              </div>
+            </div>
+          </div>
+
+          <label for="notes">Notes (optional)</label>
+          <textarea id="notes" name="notes" placeholder="Intended use, strength requirements, size constraints, finish preferences, or anything else relevant."></textarea>
+
+          <label>Upload your file</label>
+          <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
+            Upload File (STL / STEP / 3MF / ZIP)
+          </a>
+
+          <p class="fine">
+            Upload opens in a new tab. Once uploaded, return here and click <strong>Get a fast quote</strong>.
+            If you’re unsure whether the upload worked, mention the filename in the Notes box.
+          </p>
+
+          <!-- Shipping fields (shown only when Shipping selected) -->
+          <div id="shippingFields" class="hidden" style="margin-top:12px;">
+            <div class="kicker">Shipping address</div>
+
+            <label for="address1">Address line 1</label>
+            <input id="address1" name="address_line_1" placeholder="Street address">
+
+            <label for="address2">Address line 2 (optional)</label>
+            <input id="address2" name="address_line_2" placeholder="Unit / Apartment / Level">
+
+            <div class="row">
+              <div>
+                <label for="suburb">Suburb</label>
+                <input id="suburb" name="suburb">
+              </div>
+              <div>
+                <label for="state">State</label>
+                <select id="state" name="state">
+                  <option value="" selected disabled>Select…</option>
+                  <option value="SA">SA</option>
+                  <option value="VIC">VIC</option>
+                  <option value="NSW">NSW</option>
+                  <option value="QLD">QLD</option>
+                  <option value="WA">WA</option>
+                  <option value="TAS">TAS</option>
+                  <option value="ACT">ACT</option>
+                  <option value="NT">NT</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="postcode">Postcode</label>
+            <input id="postcode" name="postcode" inputmode="numeric" pattern="[0-9]{4}" placeholder="e.g. 5000">
+            <div class="hint">We only request a full address for shipping quotes. Pickup customers can skip this section.</div>
+          </div>
+
+          <p class="fine">
+            By submitting, you confirm you have rights to the file and that we are printing from your supplied design.
+          </p>
+
+          <button class="btn" type="submit">Get a fast quote</button>
+        </form>
+      </section>
+    </div>
 
     <p class="fine" style="text-align:center; margin-top:16px;">
       © <span id="y"></span> Precision 3D Prints • Printed in Adelaide, SA • Shipping Australia-wide
