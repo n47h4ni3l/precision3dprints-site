@@ -42,6 +42,35 @@
       );
     }
 
+    /* Rotating info card */
+.rotate-card { position: relative; overflow: hidden; }
+
+.rotate-inner{
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 320ms ease, transform 320ms ease;
+}
+
+.rotate-inner.is-fading-out{
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+/* Reserve height to prevent layout jump */
+.rotate-measure{
+  position: absolute;
+  inset: 18px 18px auto 18px;  /* mirrors card padding visually */
+  visibility: hidden;
+  pointer-events: none;
+  height: auto;
+}
+
+/* Motion accessibility */
+@media (prefers-reduced-motion: reduce){
+  .rotate-inner{ transition: none; }
+}
+
+
 
     .wrap { max-width:var(--max); margin:0 auto; padding:28px 16px 60px; }
 
@@ -388,18 +417,25 @@
         Want a specific colour or specialty filament? Tell us what you want (or paste a link) and we’ll source it if compatible.
       </p>
     </header>
-
-    <section class="card soft" aria-label="What we print">
-      <div class="kicker">Common jobs we print</div>
-      <p style="margin-top:6px;">
-        Replacement plastic parts, brackets and mounts, workshop and automotive accessories, prototypes and test parts,
-        desk and dashboard items, and small short-run prints.
-      </p>
-      <p class="fine" style="margin-top:8px;">
-        Not sure if your file is suitable? Upload it anyway - we’ll tell you before printing if anything needs changes.
-      </p>
+    
+    <section class="card soft rotate-card" aria-label="About our service">
+      <div class="rotate-inner" id="rotateInner">
+        <!-- Content injected by JS -->
+      </div>
+    
+      <!-- Helps avoid layout shift by reserving space -->
+      <div class="rotate-measure" aria-hidden="true">
+        <div class="kicker">Why outsource your printing?</div>
+        <p style="margin-top:6px;">
+          Skip the printer learning curve, calibration, failed prints, and buying a full spool for one small part.
+          We print it for you—fast, clean, and shipped Australia-wide.
+        </p>
+        <p class="fine" style="margin-top:8px;">
+          No workshop mess. No troubleshooting. No fumes lingering in the house—just the part you needed.
+        </p>
+      </div>
     </section>
-
+    
     <!-- New: Quote panel background (C) -->
     <div class="quote-panel">
       <section class="card" id="order" style="margin-top:0;">
@@ -612,6 +648,59 @@
 
     colourEl.addEventListener("change", syncColourDetails);
     syncColourDetails();
-  </script>
+
+// Rotating “Common jobs / Why outsource” card
+(() => {
+  const inner = document.getElementById("rotateInner");
+  if (!inner) return;
+
+  const slides = [
+    {
+      kicker: "Common jobs we print",
+      body: "Replacement plastic parts, brackets and mounts, workshop and automotive accessories, prototypes and test parts, desk and dashboard items, and small short-run prints.",
+      fine: "Not sure if your file is suitable? Upload it anyway - we’ll tell you before printing if anything needs changes."
+    },
+    {
+      kicker: "Why outsource your printing?",
+      body: "Skip the learning curve, calibration, failed prints, and buying a full spool for one small part. We print it for you—fast, clean, and shipped Australia-wide.",
+      fine: "No workshop mess. No troubleshooting. No fumes lingering in the house—just the part you needed."
+    }
+  ];
+
+  let idx = 0;
+  const intervalMs = 12000; // change to 10000–15000 if you prefer
+
+  function render(i){
+    const s = slides[i];
+    inner.innerHTML = `
+      <div class="kicker">${s.kicker}</div>
+      <p style="margin-top:6px;">${s.body}</p>
+      <p class="fine" style="margin-top:8px;">${s.fine}</p>
+    `;
+  }
+
+  // Initial render
+  render(idx);
+
+  // Rotate with fade
+  const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  setInterval(() => {
+    if (prefersReduced){
+      idx = (idx + 1) % slides.length;
+      render(idx);
+      return;
+    }
+
+    inner.classList.add("is-fading-out");
+
+    setTimeout(() => {
+      idx = (idx + 1) % slides.length;
+      render(idx);
+      inner.classList.remove("is-fading-out");
+    }, 320);
+  }, intervalMs);
+})();
+</script>
 </body>
 </html>
