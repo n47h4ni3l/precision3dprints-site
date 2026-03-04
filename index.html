@@ -4,227 +4,289 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Precision 3D Prints | Adelaide 3D Printing (Ship Australia-wide)</title>
-  <meta name="description" content="Custom 3D printing in Adelaide. Print-only service from customer-supplied files (STL/STEP/3MF). Fast quotes, pickup in Adelaide or ship Australia-wide." />
+  <title>Precision 3D Prints | 3D Printing Adelaide (Ship Australia-wide)</title>
+  <meta name="description" content="Adelaide 3D printing service. Print-only from customer-supplied files (STL/STEP/3MF). Fast quotes, pickup in Adelaide or ship Australia-wide." />
   <link rel="canonical" href="https://precision3dprints.com.au/" />
-  <link rel="icon" href="/favicon.png" type="image/png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
-
     :root{
-      --max: 920px;
-      --text:#111;
-      --muted:#555;
-      --line:#e7e7e7;
-      --soft:#f7f7f7;
+      --bg: #0b1220;
+      --page: #0f172a;
+      --card: #0b1324;
+      --card2:#0c152a;
+      --text:#e6e8ee;
+      --muted:#b7bdc8;
+      --muted2:#96a0b2;
+      --line: rgba(255,255,255,0.10);
+      --line2: rgba(255,255,255,0.16);
 
       --brand:#f57c00;
-      --brand-dark:#e56f00;
-      --brand-ring: rgba(245,124,0,0.22);
+      --brand2:#ff8a1f;
+      --ring: rgba(245,124,0,0.22);
 
-      --section-bg:#faf8f6;
+      --max: 1100px;
+      --radius: 16px;
     }
 
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(245,124,0,0.18), transparent 55%),
+        radial-gradient(900px 600px at 90% 10%, rgba(59,130,246,0.16), transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--page) 100%);
       color:var(--text);
-      background: linear-gradient(180deg,#e9edf1 0%,#e3e7eb 60%,#dde2e7 100%);
     }
 
+    a{ color:inherit; }
     .wrap{ max-width:var(--max); margin:0 auto; padding:22px 16px 70px; }
-    header.banner{ text-align:center; padding:10px 0 18px; border-bottom:1px solid var(--line); }
 
-    header.banner img{ width:100%; height:auto; border-radius:14px; display:block; }
+    /* Top bar */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 0 18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      font-weight:900;
+      letter-spacing:-0.2px;
+    }
+    .brand-logo{
+      width:34px; height:34px; border-radius:10px;
+      background: linear-gradient(135deg, rgba(245,124,0,1), rgba(255,138,31,1));
+      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    }
+    .nav{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+    }
+    .nav a:hover{ color:var(--text); }
 
-    h1{ margin:14px 0 8px; font-size:32px; letter-spacing:-0.2px; }
-    h2{ margin:0 0 8px; letter-spacing:-0.2px; }
-    p{ margin:8px 0; color:var(--muted); line-height:1.5; }
-
-    .fine{ font-size:12px; color:#666; margin-top:10px; line-height:1.45; }
-    .kicker{ font-size:13px; color:#333; font-weight:800; margin:10px 0 6px; }
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
 
     .card{
-      margin-top:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
       padding:18px;
-      border-radius:20px;
-      background:#fff;
-      border:1px solid rgba(17,17,17,0.06);
-      box-shadow:0 22px 50px rgba(0,0,0,0.08), 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.35);
     }
-    .card.soft{ background:#f9fafb; }
+    .card.flat{
+      background: rgba(255,255,255,0.04);
+      box-shadow:none;
+    }
 
+    h1{
+      margin:6px 0 10px;
+      font-size: 38px;
+      line-height: 1.1;
+      letter-spacing:-0.6px;
+    }
+    @media (max-width: 520px){
+      h1{ font-size:32px; }
+    }
+    h2{
+      margin:0 0 10px;
+      font-size:20px;
+      letter-spacing:-0.2px;
+    }
+    p{
+      margin:10px 0;
+      color:var(--muted);
+      line-height:1.55;
+    }
+    .fine{
+      margin:10px 0 0;
+      font-size:12.5px;
+      color:var(--muted2);
+      line-height:1.45;
+    }
+
+    /* Hero */
     .hero-badges{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      justify-content:center;
-      margin:10px 0 0;
+      margin-top:12px;
     }
     .badge{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:8px 12px;
+      padding:8px 10px;
       border-radius:999px;
-      background:rgba(255,255,255,0.85);
-      border:1px solid rgba(17,17,17,0.10);
-      color:#222;
-      font-size:12px;
+      border:1px solid var(--line2);
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
       font-weight:800;
-      backdrop-filter: blur(6px);
+      font-size:12px;
     }
 
-    .cta-row{
+    .btn-row{
       display:flex;
       gap:10px;
-      justify-content:center;
       flex-wrap:wrap;
-      margin-top:12px;
+      margin-top:14px;
     }
 
     .btn{
-      display:inline-block;
-      text-align:center;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
       padding:12px 14px;
-      border:0;
-      border-radius:12px;
-      background:var(--brand);
-      color:#fff;
+      border-radius: 12px;
+      border:1px solid transparent;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color:#111;
       font-weight:900;
-      cursor:pointer;
       text-decoration:none;
-      box-shadow:0 10px 26px rgba(0,0,0,.10);
+      cursor:pointer;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
       min-width: 190px;
     }
-    .btn:hover{ background:var(--brand-dark); }
+    .btn:hover{ filter: brightness(1.03); }
     .btn:active{ transform: translateY(1px); }
 
     .btn.secondary{
-      background:#fff;
-      color:#111;
-      border:1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-color: var(--line2);
       box-shadow:none;
       font-weight:800;
     }
-    .btn.secondary:hover{ border-color:#d8d8d8; }
+    .btn.secondary:hover{ border-color: rgba(255,255,255,0.26); }
 
-    label{ display:block; font-weight:700; margin:12px 0 6px; }
-
-    .row{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; min-width:0; }
-    .row > div{ min-width:0; }
-    @media (max-width: 680px){ .row{ grid-template-columns:1fr; } }
-
-    input, textarea, select{
+    /* Make submit button full-width + centered in form */
+    .btn.submit{
+      display:block;
       width:100%;
-      max-width:100%;
       min-width:0;
-      padding:10px 12px;
-      border-radius:12px;
-      font:inherit;
-      outline:none;
-      background:#f7f8fa;
-      border:1px solid rgba(17,17,17,0.10);
+      margin-top:14px;
     }
-    textarea{ min-height:92px; resize:vertical; }
 
-    input:focus, textarea:focus, select:focus{
-      border-color: rgba(245,124,0,0.55);
-      box-shadow: 0 0 0 3px var(--brand-ring);
+    /* Sidebar quick contact */
+    .contact{
+      display:grid;
+      gap:10px;
+    }
+    .contact a{
+      text-decoration:none;
+      border:1px solid var(--line2);
+      border-radius: 12px;
+      padding:12px;
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      font-weight:800;
+    }
+    .contact a:hover{ border-color: rgba(255,255,255,0.26); }
+
+    /* Sections */
+    .section{ margin-top:18px; }
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 900px){
+      .split{ grid-template-columns: 1fr; }
+    }
+
+    .list{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    /* Form */
+    label{
+      display:block;
+      font-weight:800;
+      color: var(--text);
+      margin:12px 0 6px;
+      font-size:13px;
+    }
+    input, select, textarea{
+      width:100%;
+      padding:11px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.22);
+      color: var(--text);
+      outline:none;
+      font: inherit;
+    }
+    input::placeholder, textarea::placeholder{ color: rgba(230,232,238,0.55); }
+    textarea{ min-height: 92px; resize:vertical; }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(245,124,0,0.65);
+      box-shadow: 0 0 0 3px var(--ring);
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 520px){
+      .row{ grid-template-columns: 1fr; }
     }
 
     .hidden{ display:none; }
-    .hint{ margin-top:6px; font-size:12px; color:#666; line-height:1.35; }
 
-    .section-tint{
-      margin-top:16px;
-      padding:14px;
-      border-radius:18px;
-      background: linear-gradient(180deg, #faf8f6, #f6f2ee);
-      box-shadow: inset 0 0 0 1px rgba(17,17,17,0.05);
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin:14px 0;
     }
 
-    /* Floating action buttons (bottom-right) */
-    .fab-stack{
-      position:fixed;
-      right:18px;
-      bottom:18px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      z-index:9999;
-    }
-    .fab{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:999px;
-      color:#fff;
-      text-decoration:none;
-      font-weight:900;
-      box-shadow:0 10px 26px rgba(0,0,0,.18);
-    }
-    .fab svg{ width:18px; height:18px; display:block; }
-    .fab.email{ background:#1f1f1f; }
-    .fab.fb{ background:#1877F2; }
-    .fab:active{ transform: translateY(1px); }
-    @media (max-width:420px){
-      .fab span{ display:none; }
-      .fab{ padding:12px; }
+    /* Footer */
+    .footer{
+      text-align:center;
+      margin-top:18px;
+      color: var(--muted2);
+      font-size:12.5px;
     }
 
-    /* Simple promo chip */
-    .promo{
-      margin:12px auto 0;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      background: rgba(211,47,47,0.95);
-      color:#fff;
-      font-weight:900;
-      font-size:12px;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    /* Simple helper link style */
+    .link{
+      color: #ffd2a6;
+      text-decoration: none;
+      border-bottom: 1px dotted rgba(255,210,166,0.55);
     }
-
-    /* Trust list */
-    .trust{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:10px;
-    }
-    .trust div{
-      padding:12px;
-      border-radius:14px;
-      background:#fff;
-      border:1px solid rgba(17,17,17,0.08);
-      font-size:13px;
-      color:#222;
-      font-weight:800;
-    }
-    @media (max-width:680px){ .trust{ grid-template-columns:1fr; } }
-
-    /* Rotating info */
-    .rotate-inner{
-      opacity:1;
-      transform: translateY(0);
-      transition: opacity 320ms ease, transform 320ms ease;
-    }
-    .rotate-inner.is-fading-out{
-      opacity:0;
-      transform: translateY(4px);
-    }
-    @media (prefers-reduced-motion: reduce){
-      .rotate-inner{ transition:none; }
-    }
+    .link:hover{ border-bottom-color: rgba(255,210,166,0.9); }
   </style>
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) - GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y3V1F5BWJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -237,233 +299,210 @@
 <body>
   <div class="wrap">
 
-    <header class="banner">
-      <img src="/banner.png" alt="Precision 3D Prints – 3D Printing in Adelaide (ship Australia-wide)">
+    <div class="topbar">
+      <a class="brand" href="/" aria-label="Precision 3D Prints Home">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <span>Precision 3D Prints</span>
+      </a>
 
-      <!-- Stronger local match for “Adelaide” searches -->
-      <h1>Custom 3D printing in Adelaide</h1>
-
-      <p>
-        Print-only service from <strong>customer-supplied files</strong> (STL / STEP / 3MF).
-        Pickup in Adelaide or ship Australia-wide.
-      </p>
-
-      <div class="hero-badges" aria-label="Service highlights">
-        <span class="badge">Fast quotes</span>
-        <span class="badge">One-off & small batch</span>
-        <span class="badge">PLA • PETG • ASA • TPU</span>
-        <span class="badge">Pickup (Adelaide) or ship AU</span>
-      </div>
-
-      <div class="cta-row">
-        <a class="btn" href="#order">Request a Quote</a>
-        <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
-          Upload File
-        </a>
-      </div>
-
-      <div class="promo" role="note" aria-label="Promo">
-        Free shipping Australia-wide (opening celebration)
-      </div>
-
-      <!-- Honest, non-design promise -->
-      <p class="fine" style="margin-top:12px;">
-        No file yet? We do not offer design/engineering services at this stage. If you found a model online, paste the link in the Notes and we can quote printing.
-      </p>
-    </header>
-
-    <section class="card soft" aria-label="What we print">
-      <div class="kicker">Best for</div>
-      <p style="margin-top:6px;">
-        Replacement parts, brackets and mounts, workshop and automotive accessories, prototypes and test parts, desk and dashboard items, and small short-run prints.
-      </p>
-
-      <div class="trust" aria-label="Trust signals">
-        <div>Printed in Adelaide, SA</div>
-        <div>Clear communication before printing</div>
-        <div>Quality-focused setup & finishing</div>
-        <div>Small jobs welcome</div>
-      </div>
-    </section>
-
-    <section class="card soft" aria-label="Browse model libraries">
-      <div class="kicker" style="margin-top:0;">Need a model file?</div>
-      <p style="margin-top:6px;">
-        Browse popular model libraries, then upload the file (or paste a link in the Notes) for a quote.
-      </p>
-      <p class="fine" style="margin:10px 0 0;">
-        <a href="https://www.printables.com/" target="_blank" rel="noopener">Printables</a> ·
-        <a href="https://makerworld.com/" target="_blank" rel="noopener">MakerWorld</a> ·
-        <a href="https://www.thingiverse.com/" target="_blank" rel="noopener">Thingiverse</a> ·
-        <a href="https://cults3d.com/" target="_blank" rel="noopener">Cults3D</a>
-      </p>
-      <p class="fine" style="margin-top:8px;">
-        Tip: Check the model’s license and make sure it’s allowed to be printed.
-      </p>
-    </section>
-
-    <section class="card soft" aria-label="Why outsource" style="position:relative; overflow:hidden;">
-      <div class="rotate-inner" id="rotateInner"></div>
-    </section>
-
-    <div class="section-tint">
-      <section class="card" id="order" style="margin-top:0;">
-        <h2>Request a Quote</h2>
-
-        <p class="fine" style="margin:6px 0 10px; text-align:center;">
-          No minimum order • Fast turnaround • Clear confirmation before printing
-        </p>
-
-        <p style="margin:0 0 10px;">
-          Fill in the basics and we’ll reply with price, turnaround, and any material recommendations.
-          You can upload your file via Dropbox (button below) and optionally reference the filename in Notes.
-        </p>
-
-        <form id="quoteForm" action="https://formspree.io/f/xaqyvgeb" method="POST">
-          <input type="hidden" name="_subject" value="New 3D Print Quote Request (Website)">
-          <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
-          <input type="hidden" name="_next" value="https://precision3dprints.com.au/thanks.html">
-
-          <div class="row">
-            <div>
-              <label for="name">Full name</label>
-              <input id="name" name="name" autocomplete="name" required>
-            </div>
-            <div>
-              <label for="phone">Phone (optional)</label>
-              <input id="phone" name="phone" autocomplete="tel">
-            </div>
-          </div>
-
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required>
-
-          <div class="row">
-            <div>
-              <label for="delivery">Delivery preference</label>
-              <select id="delivery" name="delivery" required>
-                <option value="" selected disabled>Select…</option>
-                <option value="Pickup (Adelaide)">Pickup (Adelaide)</option>
-                <option value="Shipping (Australia-wide)">Shipping (Australia-wide)</option>
-              </select>
-              <div class="hint">Shipping is free during the opening celebration.</div>
-            </div>
-
-            <div>
-              <label for="qty">Quantity</label>
-              <select id="qty" name="quantity" required>
-                <option value="1" selected>1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6-10">6–10</option>
-                <option value="11-25">11–25</option>
-                <option value="26+">26+</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <div>
-              <label for="material">Material preference (optional)</label>
-              <select id="material" name="material_preference">
-                <option value="" selected>No preference (recommend)</option>
-                <option value="PLA">PLA</option>
-                <option value="PETG">PETG</option>
-                <option value="ASA">ASA</option>
-                <option value="TPU">TPU</option>
-                <option value="Other (specify in notes)">Other (specify in notes)</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="colour">Colour / finish (optional)</label>
-              <select id="colour" name="colour_preference">
-                <option value="" selected>No preference (we’ll recommend)</option>
-                <option value="Black">Black</option>
-                <option value="White">White</option>
-                <option value="Grey">Grey</option>
-                <option value="Clear / Transparent">Clear / Transparent</option>
-                <option value="Any colour / specialty filament (specify below)">Any colour / specialty filament (specify below)</option>
-              </select>
-
-              <div id="colourDetailsWrap" class="hidden">
-                <label for="colour_details" style="margin-top:10px;">Colour / filament details</label>
-                <input id="colour_details" name="colour_details"
-                  placeholder="Example: ‘ASA – Army Green’, ‘Wood PLA’, or paste a product link" autocomplete="off" />
-                <div class="hint">We can source many colours and specialty filaments where compatible.</div>
-              </div>
-            </div>
-          </div>
-
-          <label for="notes">Notes (optional)</label>
-          <textarea id="notes" name="notes" placeholder="Intended use, strength requirements, size constraints, finish preferences, or a link to the model."></textarea>
-
-          <!-- Reduce friction: don’t ask for full address up front -->
-          <div id="shippingMini" class="hidden" style="margin-top:12px;">
-            <div class="kicker">Shipping estimate (quick)</div>
-            <div class="row">
-              <div>
-                <label for="state">State</label>
-                <select id="state" name="state">
-                  <option value="" selected disabled>Select…</option>
-                  <option value="SA">SA</option>
-                  <option value="VIC">VIC</option>
-                  <option value="NSW">NSW</option>
-                  <option value="QLD">QLD</option>
-                  <option value="WA">WA</option>
-                  <option value="TAS">TAS</option>
-                  <option value="ACT">ACT</option>
-                  <option value="NT">NT</option>
-                </select>
-              </div>
-              <div>
-                <label for="postcode">Postcode</label>
-                <input id="postcode" name="postcode" inputmode="numeric" pattern="[0-9]{4}" placeholder="e.g. 5000">
-              </div>
-            </div>
-            <div class="hint">We’ll only request your full address after you approve the quote.</div>
-          </div>
-
-          <label>Upload your file</label>
-          <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
-            Upload File (STL / STEP / 3MF / ZIP)
-          </a>
-
-          <p class="fine">
-            Upload opens in a new tab. After uploading, return here and submit the form.
-            If you’re unsure whether the upload worked, mention the filename in Notes.
-          </p>
-
-          <p class="fine">
-            By submitting, you confirm you have rights to the file and that we are printing from your supplied design.
-          </p>
-
-          <button class="btn" type="submit">Get a fast quote</button>
-        </form>
-      </section>
+      <nav class="nav" aria-label="Site navigation">
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#quote">Quote</a>
+        <a href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload</a>
+      </nav>
     </div>
 
-    <p class="fine" style="text-align:center; margin-top:16px;">
+    <div class="grid">
+      <!-- HERO -->
+      <section class="card" aria-label="Hero">
+        <img src="/banner.png" alt="Precision 3D Prints — 3D printing in Adelaide" style="width:100%; height:auto; border-radius:14px; display:block; border:1px solid rgba(255,255,255,0.10);"/>
+
+        <h1>3D printing in Adelaide, done professionally</h1>
+
+        <p>
+          Print-only service from <strong>customer-supplied files</strong> (STL / STEP / 3MF).
+          Pickup in Adelaide or ship Australia-wide.
+        </p>
+
+        <div class="hero-badges" aria-label="Highlights">
+          <span class="badge">Fast quotes</span>
+          <span class="badge">One-off & small batch</span>
+          <span class="badge">PLA • PETG • ASA • TPU</span>
+          <span class="badge">Clear communication</span>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn" href="#quote">Request a quote</a>
+          <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
+            Upload file
+          </a>
+        </div>
+
+        <p class="fine">
+          Note: We are currently a print-only service. If you found a model online, paste the link in your quote notes and we can quote printing.
+        </p>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="card flat" aria-label="Quick contact">
+        <h2>Quick contact</h2>
+        <div class="contact">
+          <a href="mailto:sales@precision3dprints.com.au">Email: sales@precision3dprints.com.au</a>
+          <a href="https://m.me/precision3dprints" target="_blank" rel="noopener">Facebook Messenger</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2 id="services">What we print</h2>
+        <ul class="list">
+          <li>Replacement parts (customer-supplied files)</li>
+          <li>Hobby parts and accessories</li>
+          <li>Small brackets, mounts, enclosures</li>
+          <li>Prototype and test prints</li>
+        </ul>
+
+        <p class="fine">
+          If you’re unsure on material choice, select “No preference” and we’ll recommend.
+        </p>
+      </aside>
+    </div>
+
+    <!-- REVIEWS (free + compliant) -->
+  <!-- Google Reviews | Precision 3D Prints Reviews -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-de8075b6-18f1-4161-a786-038a84e0c573" data-elfsight-app-lazy></div>
+
+    <!-- QUOTE FORM -->
+    <section class="card section" id="quote" aria-label="Quote form">
+      <h2>Request a quote</h2>
+      <p class="fine" style="margin-top:0;">
+        Upload your file via Dropbox (button below). Then submit this form so we can match your details to the upload.
+      </p>
+
+      <form id="quoteForm" action="https://formspree.io/f/xaqyvgeb" method="POST">
+        <input type="hidden" name="_subject" value="New 3D Print Quote Request (Website)" />
+        <input type="hidden" name="_next" value="https://precision3dprints.com.au/thanks.html" />
+
+        <!-- Honeypot -->
+        <div class="hidden">
+          <label for="_gotcha">Leave this field blank</label>
+          <input id="_gotcha" type="text" name="_gotcha" autocomplete="off" tabindex="-1" />
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" autocomplete="name" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" name="phone" autocomplete="tel" />
+          </div>
+
+          <div>
+            <label for="delivery">Delivery preference</label>
+            <select id="delivery" name="delivery" required>
+              <option value="" selected disabled>Select…</option>
+              <option value="Pickup (Adelaide)">Pickup (Adelaide)</option>
+              <option value="Shipping (Australia-wide)">Shipping (Australia-wide)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="shippingMini" class="hidden">
+          <div class="row">
+            <div>
+              <label for="state">State</label>
+              <select id="state" name="state">
+                <option value="" selected disabled>Select…</option>
+                <option value="SA">SA</option>
+                <option value="VIC">VIC</option>
+                <option value="NSW">NSW</option>
+                <option value="QLD">QLD</option>
+                <option value="WA">WA</option>
+                <option value="TAS">TAS</option>
+                <option value="ACT">ACT</option>
+                <option value="NT">NT</option>
+              </select>
+            </div>
+            <div>
+              <label for="postcode">Postcode</label>
+              <input id="postcode" name="postcode" inputmode="numeric" pattern="[0-9]{4}" placeholder="e.g. 5000" />
+            </div>
+          </div>
+          <p class="fine" style="margin-top:8px;">
+            We’ll only request your full address after you approve the quote.
+          </p>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="quantity">Quantity</label>
+            <select id="quantity" name="quantity" required>
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6-10">6–10</option>
+              <option value="11-25">11–25</option>
+              <option value="26+">26+</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="material">Material preference (optional)</label>
+            <select id="material" name="material_preference">
+              <option value="" selected>No preference (recommend)</option>
+              <option value="PLA">PLA</option>
+              <option value="PETG">PETG</option>
+              <option value="ASA">ASA</option>
+              <option value="TPU">TPU</option>
+              <option value="Other (specify in notes)">Other (specify in notes)</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" placeholder="Intended use, strength requirements, finish preferences, and/or a link to the model file."></textarea>
+
+        <div class="divider"></div>
+
+        <h2 style="margin:0 0 6px; font-size:16px;">Upload your file</h2>
+        <p class="fine" style="margin-top:0;">
+          Files accepted: STL / STEP / 3MF / ZIP.
+        </p>
+
+        <div class="btn-row" style="margin-top:10px;">
+          <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
+            Upload file via Dropbox
+          </a>
+        </div>
+
+        <p class="fine">
+          After uploading, return here and submit the form. If helpful, mention the uploaded filename in Notes.
+        </p>
+
+        <p class="fine">
+          By submitting, you confirm you have rights to the file and are requesting print-only services from your supplied design.
+        </p>
+
+        <!-- This will be centered/full width and WILL trigger required-field validation -->
+        <button class="btn submit" type="submit">Get a fast quote</button>
+      </form>
+    </section>
+
+    <div class="footer">
       © <span id="y"></span> Precision 3D Prints • Adelaide, SA • Shipping Australia-wide
-    </p>
-  </div>
-
-  <div class="fab-stack">
-    <a class="fab email" href="mailto:sales@precision3dprints.com.au" aria-label="Email Precision 3D Prints">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-      </svg>
-      <span>Email us</span>
-    </a>
-
-    <a class="fab fb" href="https://m.me/precision3dprints" target="_blank" rel="noopener" aria-label="Message Precision 3D Prints on Facebook">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99A10 10 0 0 0 22 12z"/>
-      </svg>
-      <span>Message us</span>
-    </a>
+    </div>
   </div>
 
   <script>
@@ -480,76 +519,13 @@
       const isShipping = v.toLowerCase().includes("shipping");
       shippingMini.classList.toggle("hidden", !isShipping);
 
-      // required only when shipping
       if (stateEl) stateEl.required = isShipping;
       if (postcodeEl) postcodeEl.required = isShipping;
     }
-    deliveryEl.addEventListener("change", syncShippingMini);
+    if (deliveryEl) deliveryEl.addEventListener("change", syncShippingMini);
     syncShippingMini();
 
-    // Colour details toggle
-    const colourEl = document.getElementById("colour");
-    const colourDetailsWrap = document.getElementById("colourDetailsWrap");
-    const colourDetails = document.getElementById("colour_details");
-
-    function syncColourDetails(){
-      const v = (colourEl.value || "").toLowerCase();
-      const isAny = v.includes("any colour") || v.includes("specialty");
-      colourDetailsWrap.classList.toggle("hidden", !isAny);
-      colourDetails.required = isAny;
-    }
-    colourEl.addEventListener("change", syncColourDetails);
-    syncColourDetails();
-
-    // Rotating info card
-    (() => {
-      const inner = document.getElementById("rotateInner");
-      if (!inner) return;
-
-      const slides = [
-        {
-          kicker: "Why customers use us",
-          body: "Get the part you need without buying a printer, troubleshooting failed prints, or buying a full spool for one small job.",
-          fine: "We confirm the file looks printable before we start production."
-        },
-        {
-          kicker: "How it works",
-          body: "1) Upload your file (or paste a model link)  2) We quote price + turnaround  3) We print, finish, and ship or arrange pickup.",
-          fine: "Print-only service from customer-supplied files."
-        }
-      ];
-
-      let idx = 0;
-      const intervalMs = 12000;
-      const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      function render(i){
-        const s = slides[i];
-        inner.innerHTML = `
-          <div class="kicker">${s.kicker}</div>
-          <p style="margin-top:6px;">${s.body}</p>
-          <p class="fine" style="margin-top:8px;">${s.fine}</p>
-        `;
-      }
-
-      render(idx);
-
-      setInterval(() => {
-        if (prefersReduced){
-          idx = (idx + 1) % slides.length;
-          render(idx);
-          return;
-        }
-        inner.classList.add("is-fading-out");
-        setTimeout(() => {
-          idx = (idx + 1) % slides.length;
-          render(idx);
-          inner.classList.remove("is-fading-out");
-        }, 320);
-      }, intervalMs);
-    })();
-
-    // Fire a GA4 lead event on submit (doesn't block Formspree)
+    // GA4 conversion-style event on submit (does not bypass native validation)
     const quoteForm = document.getElementById("quoteForm");
     if (quoteForm) {
       quoteForm.addEventListener("submit", () => {
