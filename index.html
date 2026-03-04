@@ -237,45 +237,52 @@
 
     /* Buttons */
     
-    .quick-contact-buttons {
-  display: flex;
-  gap: 12px;
+   .quick-contact-buttons{
+  display:flex;
+  gap:16px;
 }
 
-.qc-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 18px;
-  border-radius: 999px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.2s ease;
+.qc-btn{
+  flex:1;
+  min-height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  font-weight:800;
+  letter-spacing:.2px;
+  text-decoration:none;
+  user-select:none;
+  transition:transform .12s ease, filter .12s ease, box-shadow .12s ease;
 }
 
-.qc-email {
-  background: #1F1F1F;
-  color: white;
+.qc-btn:active{
+  transform:translateY(1px) scale(.99);
 }
 
-.qc-email:hover {
-  background: #2a2a2a;
+.qc-email{
+  background:#1f1f1f;
+  color:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
-.qc-messenger {
-  background: #0084FF;
-  color: white;
+.qc-messenger{
+  background:#0084FF;
+  color:#fff;
+  box-shadow:0 10px 30px rgba(0,132,255,.22);
 }
 
-.qc-messenger:hover {
-  background: #0a6fe0;
+.qc-btn:hover{
+  filter:brightness(1.05);
 }
 
-@media (max-width: 640px) {
-  .quick-contact-buttons {
-    flex-direction: column;
-  }
+.qc-btn:focus-visible{
+  outline:3px solid rgba(255,255,255,.35);
+  outline-offset:3px;
+}
+
+@media (max-width:640px){
+  .quick-contact-buttons{flex-direction:column;}
 }
     
     .btn{
