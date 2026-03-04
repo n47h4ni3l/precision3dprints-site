@@ -88,15 +88,18 @@
       letter-spacing:-0.2px;
       white-space:nowrap;
     }
-    .brand-mark{
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: 0 14px 30px rgba(0,0,0,0.35);
-      position: relative;
-      overflow:hidden;
-      flex: 0 0 auto;
+    ./* Replace orange block with real logo image */
+.brand-mark{ display:none; } /* hide old gradient block */
+
+.brand-logo-img{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;         /* keeps the same shape */
+  object-fit: contain;         /* safe for transparent PNG */
+  background: rgba(0,0,0,0.18);/* subtle backing if logo has transparency */
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+}
     }
     .brand-mark::after{
       content:"";
@@ -484,7 +487,7 @@
   <header class="header" role="banner">
     <div class="header-inner">
       <a class="brand" href="/" aria-label="Precision 3D Prints Home">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <img class="brand-logo-img" src="/logo-mark.png" alt="Precision 3D Prints" width="34" height="34" />
         <span>Precision 3D Prints</span>
       </a>
 
