@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Precision 3D Prints | 3D Printing Adelaide (Ship Australia-wide)</title>
+  <title>Precision 3D Prints | 3D Printing Adelaide</title>
   <meta name="description" content="Adelaide 3D printing service. Print-only from customer-supplied files (STL/STEP/3MF). Fast quotes, pickup in Adelaide or ship Australia-wide." />
   <link rel="canonical" href="https://precision3dprints.com.au/" />
 
@@ -13,277 +13,461 @@
 
   <style>
     :root{
-      --bg: #0b1220;
-      --page: #0f172a;
-      --card: #0b1324;
-      --card2:#0c152a;
-      --text:#e6e8ee;
-      --muted:#b7bdc8;
-      --muted2:#96a0b2;
+      --bg0:#070b13;
+      --bg1:#0b1220;
+      --bg2:#0f172a;
+
+      --card: rgba(255,255,255,0.055);
+      --card2: rgba(255,255,255,0.035);
       --line: rgba(255,255,255,0.10);
       --line2: rgba(255,255,255,0.16);
 
-      --brand:#f57c00;
-      --brand2:#ff8a1f;
-      --ring: rgba(245,124,0,0.22);
+      --text:#e8ebf2;
+      --muted:#b6bdd0;
+      --muted2:#96a0b2;
 
-      --max: 1100px;
-      --radius: 16px;
+      --brand:#f57c00;
+      --brand2:#ff922e;
+      --brand3:#ffb26a;
+      --ring: rgba(245,124,0,0.25);
+
+      --shadow: 0 18px 55px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --max: 1120px;
+
+      --headerH: 64px;
     }
 
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(245,124,0,0.18), transparent 55%),
-        radial-gradient(900px 600px at 90% 10%, rgba(59,130,246,0.16), transparent 55%),
-        linear-gradient(180deg, var(--bg) 0%, var(--page) 100%);
-      color:var(--text);
+        radial-gradient(1200px 700px at 18% -5%, rgba(245,124,0,0.18), transparent 55%),
+        radial-gradient(1000px 650px at 92% 8%, rgba(59,130,246,0.16), transparent 55%),
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 35%, var(--bg2) 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     a{ color:inherit; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:22px 16px 70px; }
 
-    /* Top bar */
-    .topbar{
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 22px 16px 90px; }
+    @media (max-width:520px){ .wrap{ padding: 14px 12px 112px; } } /* extra bottom space for mobile CTA */
+
+    /* Header */
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(8,12,20,0.82), rgba(8,12,20,0.55));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .header-inner{
+      height: var(--headerH);
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 16px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      padding:10px 0 18px;
+      gap: 14px;
     }
+    @media (max-width:520px){ .header-inner{ padding: 0 12px; } }
+
     .brand{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap: 10px;
       text-decoration:none;
-      font-weight:900;
+      font-weight: 900;
       letter-spacing:-0.2px;
+      white-space:nowrap;
     }
-    .brand-logo{
-      width:34px; height:34px; border-radius:10px;
-      background: linear-gradient(135deg, rgba(245,124,0,1), rgba(255,138,31,1));
-      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+    .brand-mark{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+      position: relative;
+      overflow:hidden;
+      flex: 0 0 auto;
     }
+    .brand-mark::after{
+      content:"";
+      position:absolute; inset:-55%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.30), transparent 45%);
+      transform: rotate(15deg);
+    }
+
     .nav{
       display:flex;
-      gap:14px;
+      align-items:center;
+      gap: 14px;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
     .nav a{
       text-decoration:none;
-      color:var(--muted);
-      font-weight:700;
-      font-size:14px;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 999px;
     }
-    .nav a:hover{ color:var(--text); }
+    .nav a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+    }
+
+    @media (max-width:780px){
+      .nav{ gap: 8px; }
+      .nav a{ font-size: 13px; padding: 8px 9px; }
+    }
+
+    /* Cards & typography */
+    .card{
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    @media (max-width:520px){ .card{ padding: 16px; border-radius: 16px; } }
+
+    .section{ margin-top: 18px; }
+    @media (max-width:520px){ .section{ margin-top: 14px; } }
+
+    h1{
+      margin: 10px 0 12px;
+      font-size: 42px;
+      line-height: 1.07;
+      letter-spacing: -0.9px;
+    }
+    @media (max-width:520px){ h1{ font-size: 32px; } }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -0.25px;
+    }
+
+    p{
+      margin: 10px 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .fine{
+      margin: 10px 0 0;
+      color: var(--muted2);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line2);
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 0.2px;
+    }
+    .kicker .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand3));
+      box-shadow: 0 0 0 4px rgba(245,124,0,0.15);
+    }
 
     /* Layout */
     .grid{
       display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap:18px;
-      align-items:start;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      align-items: start;
     }
-    @media (max-width: 900px){
+    @media (max-width: 980px){
       .grid{ grid-template-columns: 1fr; }
     }
 
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:18px;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.35);
-    }
-    .card.flat{
-      background: rgba(255,255,255,0.04);
-      box-shadow:none;
-    }
-
-    h1{
-      margin:6px 0 10px;
-      font-size: 38px;
-      line-height: 1.1;
-      letter-spacing:-0.6px;
-    }
-    @media (max-width: 520px){
-      h1{ font-size:32px; }
-    }
-    h2{
-      margin:0 0 10px;
-      font-size:20px;
-      letter-spacing:-0.2px;
-    }
-    p{
-      margin:10px 0;
-      color:var(--muted);
-      line-height:1.55;
-    }
-    .fine{
-      margin:10px 0 0;
-      font-size:12.5px;
-      color:var(--muted2);
-      line-height:1.45;
-    }
-
     /* Hero */
-    .hero-badges{
+    .hero-media{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      overflow:hidden;
+      background: rgba(0,0,0,0.20);
+    }
+    .hero-media img{
+      display:block;
+      width:100%;
+      height:auto;
+    }
+
+    .trustbar{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
-      margin-top:12px;
+      gap: 10px;
+      margin-top: 14px;
     }
-    .badge{
+    .pill{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--line2);
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line2);
       background: rgba(0,0,0,0.18);
       color: var(--text);
-      font-weight:800;
-      font-size:12px;
+      font-weight: 900;
+      font-size: 12px;
     }
+    .pill svg{ opacity: 0.9; }
 
-    .btn-row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:14px;
-    }
-
+    /* Buttons */
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:10px;
-      padding:12px 14px;
-      border-radius: 12px;
-      border:1px solid transparent;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      color:#111;
-      font-weight:900;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid transparent;
       text-decoration:none;
       cursor:pointer;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-      min-width: 190px;
+      font-weight: 950;
+      letter-spacing: 0.1px;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.42);
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #111;
     }
     .btn:hover{ filter: brightness(1.03); }
     .btn:active{ transform: translateY(1px); }
 
     .btn.secondary{
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
+      background: rgba(255,255,255,0.07);
       border-color: var(--line2);
-      box-shadow:none;
-      font-weight:800;
+      color: var(--text);
+      box-shadow: none;
+      font-weight: 900;
     }
     .btn.secondary:hover{ border-color: rgba(255,255,255,0.26); }
 
-    /* Make submit button full-width + centered in form */
-    .btn.submit{
-      display:block;
-      width:100%;
-      min-width:0;
-      margin-top:14px;
+    .btn-row{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-top: 16px;
+    }
+    @media (max-width:520px){
+      .btn-row{ flex-direction: column; }
+      .btn-row .btn{ width: 100%; }
     }
 
-    /* Sidebar quick contact */
-    .contact{
-      display:grid;
-      gap:10px;
-    }
-    .contact a{
-      text-decoration:none;
-      border:1px solid var(--line2);
-      border-radius: 12px;
-      padding:12px;
+    /* Sidebar */
+    .side-stack{ display:grid; gap: 14px; }
+    .mini-card{
+      border: 1px solid var(--line);
+      border-radius: 16px;
       background: rgba(0,0,0,0.18);
+      padding: 14px;
+    }
+    .mini-card h3{
+      margin: 0 0 8px;
+      font-size: 15px;
+      letter-spacing: -0.2px;
+    }
+    .mini-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,0.04);
+      text-decoration:none;
+      font-weight: 900;
       color: var(--text);
-      font-weight:800;
     }
-    .contact a:hover{ border-color: rgba(255,255,255,0.26); }
-
-    /* Sections */
-    .section{ margin-top:18px; }
-    .split{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width: 900px){
-      .split{ grid-template-columns: 1fr; }
-    }
+    .mini-link:hover{ border-color: rgba(255,255,255,0.26); }
 
     .list{
-      margin:10px 0 0;
-      padding-left:18px;
-      color:var(--muted);
-      line-height:1.55;
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .divider{
+      height: 1px;
+      background: rgba(255,255,255,0.10);
+      margin: 14px 0;
+    }
+
+    /* Steps */
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 900px){
+      .steps{ grid-template-columns: 1fr; }
+    }
+    .step{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(0,0,0,0.18);
+    }
+    .step .n{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 30px; height: 30px;
+      border-radius: 10px;
+      background: rgba(245,124,0,0.18);
+      border: 1px solid rgba(245,124,0,0.35);
+      font-weight: 950;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .step h3{
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: -0.2px;
+    }
+    .step p{ margin: 0; font-size: 13.5px; color: var(--muted); }
+
+    /* Reviews widget container */
+    .reviews-wrap{
+      margin-top: 12px;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+    }
+    /* reserve space to reduce layout shift while loading */
+    .reviews-wrap .elfsight-app-de8075b6-18f1-4161-a786-038a84e0c573{
+      min-height: 260px;
     }
 
     /* Form */
     label{
       display:block;
-      font-weight:800;
+      font-weight: 900;
       color: var(--text);
-      margin:12px 0 6px;
-      font-size:13px;
+      margin: 12px 0 6px;
+      font-size: 13px;
     }
     input, select, textarea{
-      width:100%;
-      padding:11px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.16);
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.16);
       background: rgba(0,0,0,0.22);
       color: var(--text);
-      outline:none;
+      outline: none;
       font: inherit;
     }
     input::placeholder, textarea::placeholder{ color: rgba(230,232,238,0.55); }
-    textarea{ min-height: 92px; resize:vertical; }
+    textarea{ min-height: 96px; resize: vertical; }
     input:focus, select:focus, textarea:focus{
-      border-color: rgba(245,124,0,0.65);
-      box-shadow: 0 0 0 3px var(--ring);
+      border-color: rgba(245,124,0,0.70);
+      box-shadow: 0 0 0 4px var(--ring);
     }
 
     .row{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:12px;
+      gap: 12px;
     }
     @media (max-width: 520px){
       .row{ grid-template-columns: 1fr; }
     }
-
     .hidden{ display:none; }
 
-    .divider{
-      height:1px;
-      background: var(--line);
-      margin:14px 0;
+    .submit{
+      display:block;
+      width:100%;
+      margin-top: 14px;
+      border: none;
     }
 
     /* Footer */
     .footer{
       text-align:center;
-      margin-top:18px;
+      margin-top: 18px;
       color: var(--muted2);
-      font-size:12.5px;
+      font-size: 12.5px;
     }
 
-    /* Simple helper link style */
-    .link{
-      color: #ffd2a6;
-      text-decoration: none;
-      border-bottom: 1px dotted rgba(255,210,166,0.55);
+    /* Floating CTAs (desktop) */
+    .float-ctas{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 80;
+      display: none;
+      gap: 10px;
+      flex-direction: column;
+      align-items: flex-end;
     }
-    .link:hover{ border-bottom-color: rgba(255,210,166,0.9); }
+    .float-ctas .btn{
+      border-radius: 999px;
+      padding: 12px 14px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+    }
+    .float-ctas .btn.secondary{ box-shadow: 0 14px 38px rgba(0,0,0,0.42); }
+
+    /* Sticky CTA bar (mobile) */
+    .mobile-cta{
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 90;
+      display: none;
+      padding: 10px 12px 12px;
+      background: linear-gradient(180deg, rgba(8,12,20,0.0), rgba(8,12,20,0.88) 40%, rgba(8,12,20,0.96));
+      border-top: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .mobile-cta .bar{
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 10px;
+    }
+    .mobile-cta .btn{
+      width: 100%;
+      border-radius: 16px;
+      padding: 13px 14px;
+    }
+
+    /* Show correct CTA system per screen size */
+    @media (min-width: 901px){
+      .float-ctas{ display:flex; }
+    }
+    @media (max-width: 900px){
+      .mobile-cta{ display:block; }
+      .nav a[href="#quote"]{ display:none; } /* reduce clutter on mobile header */
+    }
+
+    /* Hide floating CTAs when user is already at the quote form */
+    .hide-floats .float-ctas{ display:none !important; }
+    .hide-mobilebar .mobile-cta{ display:none !important; }
   </style>
 
   <!-- Google tag (gtag.js) - GA4 -->
@@ -297,11 +481,10 @@
 </head>
 
 <body>
-  <div class="wrap">
-
-    <div class="topbar">
+  <header class="header" role="banner">
+    <div class="header-inner">
       <a class="brand" href="/" aria-label="Precision 3D Prints Home">
-        <span class="brand-logo" aria-hidden="true"></span>
+        <span class="brand-mark" aria-hidden="true"></span>
         <span>Precision 3D Prints</span>
       </a>
 
@@ -312,11 +495,17 @@
         <a href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload</a>
       </nav>
     </div>
+  </header>
 
+  <main class="wrap">
     <div class="grid">
       <!-- HERO -->
       <section class="card" aria-label="Hero">
-        <img src="/banner.png" alt="Precision 3D Prints — 3D printing in Adelaide" style="width:100%; height:auto; border-radius:14px; display:block; border:1px solid rgba(255,255,255,0.10);"/>
+        <div class="kicker"><span class="dot" aria-hidden="true"></span> Adelaide 3D printing</div>
+
+        <div class="hero-media" style="margin-top:14px;">
+          <img src="/banner.png" alt="Precision 3D Prints — 3D printing in Adelaide" />
+        </div>
 
         <h1>3D printing in Adelaide, done professionally</h1>
 
@@ -325,53 +514,106 @@
           Pickup in Adelaide or ship Australia-wide.
         </p>
 
-        <div class="hero-badges" aria-label="Highlights">
-          <span class="badge">Fast quotes</span>
-          <span class="badge">One-off & small batch</span>
-          <span class="badge">PLA • PETG • ASA • TPU</span>
-          <span class="badge">Clear communication</span>
+        <div class="trustbar" aria-label="Highlights">
+          <span class="pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7L10 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Fast quotes
+          </span>
+          <span class="pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            One-off & small batch
+          </span>
+          <span class="pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h18M6 7v12m12-12v12M6 19h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            PLA • PETG • ASA • TPU
+          </span>
+          <span class="pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Clear communication
+          </span>
         </div>
 
         <div class="btn-row">
-          <a class="btn" href="#quote">Request a quote</a>
-          <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
+          <a class="btn" href="#quote" aria-label="Request a quote">Request a quote</a>
+          <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" aria-label="Upload your file via Dropbox">
             Upload file
           </a>
         </div>
 
         <p class="fine">
-          Note: We are currently a print-only service. If you found a model online, paste the link in your quote notes and we can quote printing.
+          Print-only: if you found a model online, paste the link in your quote notes and we can quote printing.
         </p>
       </section>
 
       <!-- SIDEBAR -->
-      <aside class="card flat" aria-label="Quick contact">
-        <h2>Quick contact</h2>
-        <div class="contact">
-          <a href="mailto:sales@precision3dprints.com.au">Email: sales@precision3dprints.com.au</a>
-          <a href="https://m.me/precision3dprints" target="_blank" rel="noopener">Facebook Messenger</a>
-        </div>
+      <aside class="side-stack" aria-label="Quick info">
+        <section class="card" aria-label="Quick contact">
+          <h2>Quick contact</h2>
 
-        <div class="divider"></div>
+          <a class="mini-link" href="mailto:sales@precision3dprints.com.au">
+            <span>Email: sales@precision3dprints.com.au</span>
+            <span aria-hidden="true">→</span>
+          </a>
 
-        <h2 id="services">What we print</h2>
-        <ul class="list">
-          <li>Replacement parts (customer-supplied files)</li>
-          <li>Hobby parts and accessories</li>
-          <li>Small brackets, mounts, enclosures</li>
-          <li>Prototype and test prints</li>
-        </ul>
+          <a class="mini-link" href="https://m.me/precision3dprints" target="_blank" rel="noopener">
+            <span>Facebook Messenger</span>
+            <span aria-hidden="true">→</span>
+          </a>
 
-        <p class="fine">
-          If you’re unsure on material choice, select “No preference” and we’ll recommend.
-        </p>
+          <div class="divider"></div>
+
+          <h2 id="services">Services</h2>
+          <ul class="list">
+            <li>Hobby parts and accessories</li>
+            <li>Replacement parts (customer-supplied files)</li>
+            <li>Small brackets, mounts, enclosures</li>
+            <li>Prototype and test prints</li>
+          </ul>
+
+          <p class="fine">
+            If you’re unsure on material choice, select “No preference” and we’ll recommend.
+          </p>
+        </section>
+
+        <section class="card" aria-label="How it works">
+          <h2>How it works</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="n">1</div>
+              <h3>Upload your file</h3>
+              <p>Use the Dropbox upload link (STL/STEP/3MF/ZIP).</p>
+            </div>
+            <div class="step">
+              <div class="n">2</div>
+              <h3>Request a quote</h3>
+              <p>Tell us quantity, material preference, and delivery.</p>
+            </div>
+            <div class="step">
+              <div class="n">3</div>
+              <h3>Approve & print</h3>
+              <p>We confirm details, print, then pickup or ship.</p>
+            </div>
+          </div>
+
+          <p class="fine">
+            We only request a full shipping address after you approve the quote.
+          </p>
+        </section>
       </aside>
     </div>
 
-    <!-- REVIEWS (free + compliant) -->
-  <!-- Google Reviews | Precision 3D Prints Reviews -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
-<div class="elfsight-app-de8075b6-18f1-4161-a786-038a84e0c573" data-elfsight-app-lazy></div>
+    <!-- REVIEWS -->
+    <section class="card section" id="reviews" aria-label="Customer reviews">
+      <h2>What our customers say</h2>
+      <p class="fine" style="margin-top:0;">
+        Live Google reviews (widget).
+      </p>
+
+      <div class="reviews-wrap">
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-de8075b6-18f1-4161-a786-038a84e0c573" data-elfsight-app-lazy></div>
+      </div>
+    </section>
 
     <!-- QUOTE FORM -->
     <section class="card section" id="quote" aria-label="Quote form">
@@ -495,7 +737,6 @@
           By submitting, you confirm you have rights to the file and are requesting print-only services from your supplied design.
         </p>
 
-        <!-- This will be centered/full width and WILL trigger required-field validation -->
         <button class="btn submit" type="submit">Get a fast quote</button>
       </form>
     </section>
@@ -503,9 +744,24 @@
     <div class="footer">
       © <span id="y"></span> Precision 3D Prints • Adelaide, SA • Shipping Australia-wide
     </div>
+  </main>
+
+  <!-- Desktop floating CTAs -->
+  <div class="float-ctas" aria-label="Quick actions">
+    <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload file</a>
+    <a class="btn" href="#quote">Request a quote</a>
+  </div>
+
+  <!-- Mobile sticky CTA bar -->
+  <div class="mobile-cta" aria-label="Quick actions">
+    <div class="bar">
+      <a class="btn" href="#quote">Request a quote</a>
+      <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload</a>
+    </div>
   </div>
 
   <script>
+    // year
     document.getElementById("y").textContent = new Date().getFullYear();
 
     // Toggle shipping mini-fields
@@ -515,10 +771,9 @@
     const postcodeEl = document.getElementById("postcode");
 
     function syncShippingMini(){
-      const v = deliveryEl.value || "";
+      const v = (deliveryEl && deliveryEl.value) ? deliveryEl.value : "";
       const isShipping = v.toLowerCase().includes("shipping");
       shippingMini.classList.toggle("hidden", !isShipping);
-
       if (stateEl) stateEl.required = isShipping;
       if (postcodeEl) postcodeEl.required = isShipping;
     }
@@ -536,6 +791,24 @@
           });
         } catch(e) {}
       });
+    }
+
+    // Hide floating CTAs when the quote section is in view (so it doesn't feel spammy)
+    const quoteSection = document.getElementById("quote");
+    const rootEl = document.documentElement;
+
+    function setCTAHidden(hidden){
+      rootEl.classList.toggle("hide-floats", hidden);
+      rootEl.classList.toggle("hide-mobilebar", hidden);
+    }
+
+    if ("IntersectionObserver" in window && quoteSection){
+      const io = new IntersectionObserver((entries) => {
+        const inView = entries.some(e => e.isIntersecting && e.intersectionRatio > 0.15);
+        setCTAHidden(inView);
+      }, { threshold: [0.15] });
+
+      io.observe(quoteSection);
     }
   </script>
 </body>
