@@ -48,7 +48,6 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
 
-      /* Your gradients */
       background:
         radial-gradient(1200px 700px at 18% -5%, rgba(245,124,0,0.18), transparent 55%),
         radial-gradient(1000px 650px at 92% 8%, rgba(59,130,246,0.16), transparent 55%),
@@ -56,28 +55,28 @@
 
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      position: relative; /* ensures pseudo-layer stacking behaves */
-      isolation: isolate; /* helps consistent blending across browsers */
+      position: relative;
+      isolation: isolate;
     }
 
-    /* Subtle noise overlay to reduce gradient banding (fixed + behind content) */
+    /* Subtle noise overlay to reduce gradient banding */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: -1;           /* behind page content */
-      opacity: 0.035;        /* stronger than 0.015 to actually fight banding */
+      z-index: -1;
+      opacity: 0.035;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       background-size: 220px 220px;
       mix-blend-mode: overlay;
-      transform: translateZ(0); /* reduce banding artifacts on some GPUs */
+      transform: translateZ(0);
     }
 
     a{ color:inherit; }
 
     .wrap{ max-width: var(--max); margin: 0 auto; padding: 22px 16px 90px; }
-    @media (max-width:520px){ .wrap{ padding: 14px 12px 112px; } } /* extra bottom space for mobile CTA */
+    @media (max-width:520px){ .wrap{ padding: 14px 12px 112px; } }
 
     /* Header */
     .header{
@@ -112,7 +111,7 @@
     }
 
     /* Replace orange block with real logo image */
-    .brand-mark{ display:none; } /* hide old gradient block */
+    .brand-mark{ display:none; }
     .brand-logo-img{
       width: 34px;
       height: 34px;
@@ -398,6 +397,50 @@
       min-height: 260px;
     }
 
+    /* NEW: Model sources / file links */
+    .sources-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (max-width: 900px){
+      .sources-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px){
+      .sources-grid{ grid-template-columns: 1fr; }
+    }
+
+    .source-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+      text-decoration:none;
+      font-weight: 900;
+      color: var(--text);
+      transition: transform .12s ease, filter .12s ease, border-color .12s ease;
+    }
+    .source-btn:hover{
+      filter: brightness(1.06);
+      border-color: rgba(255,255,255,0.24);
+    }
+    .source-btn:active{ transform: translateY(1px); }
+    .source-ico{
+      width: 26px;
+      height: 26px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .source-ico svg{ display:block; opacity: 0.95; }
+
     /* Form */
     label{
       display:block;
@@ -589,9 +632,7 @@
           <h2>Quick contact</h2>
 
           <div class="quick-contact-buttons" aria-label="Quick contact options">
-            <a class="qc-btn qc-email"
-               href="mailto:sales@precision3dprints.com.au"
-               data-track="contact_email">
+            <a class="qc-btn qc-email" href="mailto:sales@precision3dprints.com.au">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="margin-right:8px;">
                 <path d="M2 4h20v16H2z" fill="none"/>
                 <path d="M22 6v12H2V6l10 7L22 6zm0-2H2l10 7L22 4z"/>
@@ -602,8 +643,7 @@
             <a class="qc-btn qc-messenger"
                href="https://m.me/precision3dprints"
                target="_blank"
-               rel="noopener"
-               data-track="contact_messenger">
+               rel="noopener">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true" style="margin-right:8px;">
                 <path d="M12 2C6.5 2 2 6 2 10.5c0 2.6 1.4 4.9 3.6 6.4V22l4.3-2.3c.7.2 1.4.3 2.1.3 5.5 0 10-4 10-9.5S17.5 2 12 2z"/>
               </svg>
@@ -731,7 +771,7 @@
         <details style="border: 1px solid rgba(255,255,255,0.10); border-radius: 14px; padding: 12px 14px; background: rgba(0,0,0,0.18);">
           <summary style="cursor:pointer; font-weight: 850;">Do you ship Australia-wide?</summary>
           <p class="fine" style="margin:10px 0 0;">
-            We offer free shipping. Choose <strong>Shipping</strong> in the quote form. We only request a full shipping address after you approve the quote.
+            Yes. Choose <strong>Shipping</strong> in the quote form. We only request a full shipping address after you approve the quote.
           </p>
         </details>
 
@@ -747,6 +787,65 @@
       </div>
     </section>
 
+    <!-- NEW: WHERE TO GET FILES -->
+    <section class="card section" id="files" aria-label="Where to get 3D model files">
+      <h2>Where to get 3D model files</h2>
+      <p class="fine" style="margin-top:0;">
+        Don’t have a file yet? Find a model on one of these sites, then paste the link in your quote notes (and upload the file if you have it).
+      </p>
+
+      <div class="sources-grid" role="list">
+        <a class="source-btn" role="listitem" href="https://makerworld.com/" target="_blank" rel="noopener">
+          <span class="source-ico" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z" stroke="currentColor" stroke-width="2" opacity="0.9"/>
+            </svg>
+          </span>
+          MakerWorld
+        </a>
+
+        <a class="source-btn" role="listitem" href="https://www.printables.com/" target="_blank" rel="noopener">
+          <span class="source-ico" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M7 7h10v10H7z" stroke="currentColor" stroke-width="2" opacity="0.9"/>
+              <path d="M9 3h6v4H9z" stroke="currentColor" stroke-width="2" opacity="0.9"/>
+            </svg>
+          </span>
+          Printables
+        </a>
+
+        <a class="source-btn" role="listitem" href="https://www.thingiverse.com/" target="_blank" rel="noopener">
+          <span class="source-ico" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 4c4 0 7 3 7 7s-3 9-7 9-7-5-7-9 3-7 7-7z" stroke="currentColor" stroke-width="2" opacity="0.9"/>
+              <path d="M12 9v8" stroke="currentColor" stroke-width="2" opacity="0.9"/>
+            </svg>
+          </span>
+          Thingiverse
+        </a>
+
+        <a class="source-btn" role="listitem" href="https://cults3d.com/" target="_blank" rel="noopener">
+          <span class="source-ico" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M20 7c-2-3-6-4-8-4S6 4 4 7c-2 3-1 8 3 11 2 1 3 2 5 2s3-1 5-2c4-3 5-8 3-11z" stroke="currentColor" stroke-width="2" opacity="0.9"/>
+            </svg>
+          </span>
+          Cults3D
+        </a>
+      </div>
+
+      <p class="fine" style="margin-top:12px;">
+        Note: some models are free and some are paid. Always follow the creator’s license/terms.
+      </p>
+
+      <div class="btn-row" style="margin-top: 12px;">
+        <a class="btn" href="#quote">Request a quote</a>
+        <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
+          Upload file
+        </a>
+      </div>
+    </section>
+
     <!-- QUOTE FORM -->
     <section class="card section" id="quote" aria-label="Quote form">
       <h2>Request a quote</h2>
@@ -758,7 +857,6 @@
         <input type="hidden" name="_subject" value="New 3D Print Quote Request (Website)" />
         <input type="hidden" name="_next" value="https://precision3dprints.com.au/thanks.html" />
 
-        <!-- Honeypot -->
         <div class="hidden">
           <label for="_gotcha">Leave this field blank</label>
           <input id="_gotcha" type="text" name="_gotcha" autocomplete="off" tabindex="-1" />
@@ -878,13 +976,11 @@
     </div>
   </main>
 
-  <!-- Desktop floating CTAs -->
   <div class="float-ctas" aria-label="Quick actions">
     <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload file</a>
     <a class="btn" href="#quote">Request a quote</a>
   </div>
 
-  <!-- Mobile sticky CTA bar -->
   <div class="mobile-cta" aria-label="Quick actions">
     <div class="bar">
       <a class="btn" href="#quote">Request a quote</a>
@@ -893,10 +989,8 @@
   </div>
 
   <script>
-    // year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // Toggle shipping mini-fields
     const deliveryEl = document.getElementById("delivery");
     const shippingMini = document.getElementById("shippingMini");
     const stateEl = document.getElementById("state");
@@ -912,7 +1006,6 @@
     if (deliveryEl) deliveryEl.addEventListener("change", syncShippingMini);
     syncShippingMini();
 
-    // GA4 conversion-style event on submit (does not bypass native validation)
     const quoteForm = document.getElementById("quoteForm");
     if (quoteForm) {
       quoteForm.addEventListener("submit", () => {
@@ -925,7 +1018,6 @@
       });
     }
 
-    // Hide floating CTAs when the quote section is in view (so it doesn't feel spammy)
     const quoteSection = document.getElementById("quote");
     const rootEl = document.documentElement;
 
