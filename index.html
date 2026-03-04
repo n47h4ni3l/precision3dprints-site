@@ -236,6 +236,48 @@
     .pill svg{ opacity: 0.9; }
 
     /* Buttons */
+    
+    .quick-contact-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.qc-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.qc-email {
+  background: #1F1F1F;
+  color: white;
+}
+
+.qc-email:hover {
+  background: #2a2a2a;
+}
+
+.qc-messenger {
+  background: #0084FF;
+  color: white;
+}
+
+.qc-messenger:hover {
+  background: #0a6fe0;
+}
+
+@media (max-width: 640px) {
+  .quick-contact-buttons {
+    flex-direction: column;
+  }
+}
+    
     .btn{
       display:inline-flex;
       align-items:center;
@@ -554,15 +596,25 @@
         <section class="card" aria-label="Quick contact">
           <h2>Quick contact</h2>
 
-          <a class="mini-link" href="mailto:sales@precision3dprints.com.au">
-            <span>Email: sales@precision3dprints.com.au</span>
-            <span aria-hidden="true">→</span>
-          </a>
+      <div class="quick-contact-buttons">
+  <a class="qc-btn qc-email" href="mailto:sales@precision3dprints.com.au">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px;">
+      <path d="M2 4h20v16H2z" fill="none"/>
+      <path d="M22 6v12H2V6l10 7L22 6zm0-2H2l10 7L22 4z"/>
+    </svg>
+    Email Us
+  </a>
 
-          <a class="mini-link" href="https://m.me/precision3dprints" target="_blank" rel="noopener">
-            <span>Facebook Messenger</span>
-            <span aria-hidden="true">→</span>
-          </a>
+  <a class="qc-btn qc-messenger" 
+     href="https://m.me/precision3dprints" 
+     target="_blank" 
+     rel="noopener">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="margin-right:8px;">
+      <path d="M12 2C6.5 2 2 6 2 10.5c0 2.6 1.4 4.9 3.6 6.4V22l4.3-2.3c.7.2 1.4.3 2.1.3 5.5 0 10-4 10-9.5S17.5 2 12 2z"/>
+    </svg>
+    Messenger
+  </a>
+</div>
 
           <div class="divider"></div>
 
