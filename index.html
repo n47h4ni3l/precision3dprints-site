@@ -38,6 +38,17 @@
       --headerH: 64px;
     }
 
+      /* Subtle noise overlay to reduce gradient banding */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.015;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+    
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
     body{
@@ -88,15 +99,16 @@
       letter-spacing:-0.2px;
       white-space:nowrap;
     }
-    ./* Replace orange block with real logo image */
+
+/* Replace orange block with real logo image */
 .brand-mark{ display:none; } /* hide old gradient block */
 
 .brand-logo-img{
   width: 34px;
   height: 34px;
-  border-radius: 12px;         /* keeps the same shape */
-  object-fit: contain;         /* safe for transparent PNG */
-  background: rgba(0,0,0,0.18);/* subtle backing if logo has transparency */
+  border-radius: 12px;
+  object-fit: contain;
+  background: rgba(0,0,0,0.18);
   border: 1px solid rgba(255,255,255,0.10);
   box-shadow: 0 14px 30px rgba(0,0,0,0.35);
 }
@@ -533,14 +545,6 @@
 </head>
 
 <body>
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
-}
   <header class="header" role="banner">
     <div class="header-inner">
       <a class="brand" href="/" aria-label="Precision 3D Prints Home">
