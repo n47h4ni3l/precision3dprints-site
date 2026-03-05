@@ -283,6 +283,94 @@
     }
     .pill svg{ opacity: 0.9; }
 
+/* === Model sites (slick resource cards) === */
+.model-sites{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+@media (max-width: 980px){
+  .model-sites{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px){
+  .model-sites{ grid-template-columns: 1fr; }
+}
+
+.model-site{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.14);
+  transition: transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
+  min-height: 72px;
+}
+
+.model-site:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.20);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.35);
+}
+
+.ms-ico{
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  flex: 0 0 auto;
+}
+
+.ms-ico img{
+  width: 20px;
+  height: 20px;
+  display: block;
+  opacity: 0.92;
+}
+
+.ms-main{
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ms-title{
+  font-weight: 900;
+  color: rgba(255,255,255,0.95);
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.ms-sub{
+  margin-top: 3px;
+  color: rgba(182,189,208,0.85);
+  font-size: 12.5px;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-go{
+  margin-left: auto;
+  color: rgba(255,255,255,0.55);
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.model-sites-foot{
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+    
     /* Buttons */
     .btn-row{
       display:flex;
@@ -866,59 +954,69 @@ html, body { overflow-x: hidden; }
     </section>
 
     <!-- WHERE TO GET FILES -->
-    <section class="card section" aria-label="Where to get 3D model files">
-      <h2>Where to get 3D model files</h2>
-      <p class="fine" style="margin-top:0;">
-        Don’t have a file yet? Find a model on one of these sites, then paste the link in your quote notes (and upload the file if you have it).
-      </p>
+ <section class="card section" aria-label="Where to get 3D model files">
+  <h2>Where to get 3D model files</h2>
+  <p class="fine" style="margin-top:0;">
+    Don’t have a file yet? Grab a model from one of these sites, then paste the link in your quote notes.
+    (If you can, upload the STL/STEP/3MF too.)
+  </p>
 
-      <div class="sources" role="list" aria-label="Model marketplaces">
-        <a class="source-btn" role="listitem" href="https://makerworld.com/" target="_blank" rel="noopener">
-          <span class="source-ico" aria-hidden="true">
-            <svg role="img" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-  <path d="M12 0L1 6v12l11 6 11-6V6z"/>
-</svg>
-          </span>
-          MakerWorld
-        </a>
+  <div class="model-sites" role="list" aria-label="Model sites">
+    <a class="model-site" role="listitem" href="https://makerworld.com/" target="_blank" rel="noopener">
+      <span class="ms-ico" aria-hidden="true">
+        <img src="https://cdn.simpleicons.org/makerworld/ffffff" alt="" loading="lazy">
+      </span>
+      <span class="ms-main">
+        <span class="ms-title">MakerWorld</span>
+        <span class="ms-sub">Great for Bambu community models</span>
+      </span>
+      <span class="ms-go" aria-hidden="true">↗</span>
+    </a>
 
-        <a class="source-btn" role="listitem" href="https://www.printables.com/" target="_blank" rel="noopener">
-          <span class="source-ico" aria-hidden="true">
-            <svg role="img" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-  <path d="M7 7h10v10H7zM9 3h6v4H9z"/>
-</svg>
-          </span>
-          Printables
-        </a>
+    <a class="model-site" role="listitem" href="https://www.printables.com/" target="_blank" rel="noopener">
+      <span class="ms-ico" aria-hidden="true">
+        <img src="https://cdn.simpleicons.org/printables/ffffff" alt="" loading="lazy">
+      </span>
+      <span class="ms-main">
+        <span class="ms-title">Printables</span>
+        <span class="ms-sub">Clean library + lots of practical parts</span>
+      </span>
+      <span class="ms-go" aria-hidden="true">↗</span>
+    </a>
 
-        <a class="source-btn" role="listitem" href="https://www.thingiverse.com/" target="_blank" rel="noopener">
-          <span class="source-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-  <path d="M9 3h6v4h4v4h-4v10H9V11H5V7h4z"/>
-</svg>
-          </span>
-          Thingiverse
-        </a>
+    <a class="model-site" role="listitem" href="https://www.thingiverse.com/" target="_blank" rel="noopener">
+      <span class="ms-ico" aria-hidden="true">
+        <img src="https://cdn.simpleicons.org/thingiverse/ffffff" alt="" loading="lazy">
+      </span>
+      <span class="ms-main">
+        <span class="ms-title">Thingiverse</span>
+        <span class="ms-sub">Huge catalogue, lots of classics</span>
+      </span>
+      <span class="ms-go" aria-hidden="true">↗</span>
+    </a>
 
-        <a class="source-btn" role="listitem" href="https://cults3d.com/" target="_blank" rel="noopener">
-          <span class="source-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-  <path d="M12 2c5.5 0 10 4 10 9 0 5.5-4.5 9-10 9S2 16.5 2 11c0-5 4.5-9 10-9z"/>
-</svg>
-          </span>
-          Cults3D
-        </a>
-      </div>
+    <a class="model-site" role="listitem" href="https://cults3d.com/" target="_blank" rel="noopener">
+      <span class="ms-ico" aria-hidden="true">
+        <img src="https://cdn.simpleicons.org/cults3d/ffffff" alt="" loading="lazy">
+      </span>
+      <span class="ms-main">
+        <span class="ms-title">Cults3D</span>
+        <span class="ms-sub">Great paid designs + niche finds</span>
+      </span>
+      <span class="ms-go" aria-hidden="true">↗</span>
+    </a>
+  </div>
 
-      <p class="fine" style="margin-top:12px;">
-        Note: some models are free and some are paid. Always follow the creator’s license/terms.
-      </p>
-
-      <div class="btn-row" style="margin-top: 12px;">
-        <a class="btn" href="#quote">Request a quote</a>
-        <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload file</a>
-      </div>
-    </section>
+  <div class="model-sites-foot">
+    <p class="fine" style="margin:0;">
+      Note: some models are free and some are paid. Always follow the creator’s license/terms.
+    </p>
+    <div class="btn-row" style="margin-top:12px;">
+      <a class="btn" href="#quote">Request a quote</a>
+      <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload file</a>
+    </div>
+  </div>
+</section>
 
     <!-- QUOTE FORM -->
     <section class="card section" id="quote" aria-label="Quote form">
