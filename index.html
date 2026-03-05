@@ -349,9 +349,32 @@
       gap: 6px;
       user-select: none;
     }
-    .qc-email{
-      background: rgba(18,18,18,0.70);
-      color: rgba(255,255,255,0.94);
+   /* Microsoft 365-ish black pill */
+.qc-email{
+  background: linear-gradient(180deg, #2b2b2b 0%, #141414 100%) !important;
+  color: #ffffff !important;
+
+  border: 1px solid rgba(255,255,255,0.14) !important;
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    inset 0 -1px 0 rgba(0,0,0,0.55) !important;
+
+  filter: none !important;
+}
+
+.qc-email:hover{
+  background: linear-gradient(180deg, #323232 0%, #171717 100%) !important;
+  border-color: rgba(255,255,255,0.20) !important;
+}
+
+.qc-email:active{
+  transform: translateY(1px) scale(0.99);
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.40),
+    inset 0 2px 0 rgba(0,0,0,0.55) !important;
+}
     }
     .qc-messenger{
       background: #0084ff;
