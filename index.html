@@ -211,6 +211,49 @@
     }
     .hero-media img{ display:block; width:100%; height:auto; }
 
+/* === Hero polish (best combo) === */
+
+/* A) Premium "lit" hero surface */
+.card.hero{
+  position: relative;
+  overflow: hidden;
+}
+
+.card.hero::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(900px 520px at 12% 0%, rgba(245,124,0,0.16), transparent 62%),
+    radial-gradient(900px 520px at 92% 10%, rgba(59,130,246,0.14), transparent 66%),
+    radial-gradient(900px 520px at 50% 120%, rgba(255,255,255,0.06), transparent 70%);
+  pointer-events:none;
+  z-index:0;
+}
+
+.card.hero > *{
+  position: relative;
+  z-index:1;
+}
+
+/* B) Cleaner hero image frame + depth */
+.card.hero .hero-media{
+  box-shadow:
+    0 24px 70px rgba(0,0,0,0.58),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Optional: a slightly nicer border treatment on the hero media */
+.card.hero .hero-media{
+  border-color: rgba(255,255,255,0.14);
+}
+
+/* C) Subtle headline crispness (not overdone) */
+.card.hero h1{
+  text-shadow:
+    0 14px 40px rgba(0,0,0,0.55);
+}
+    
     h1{
       margin: 12px 0 10px;
       font-size: 42px;
@@ -558,7 +601,7 @@
   <main class="wrap">
     <div class="grid">
       <!-- HERO -->
-      <section class="card" aria-label="Hero">
+      <section class="card hero" aria-label="Hero">
         <div class="kicker"><span class="dot" aria-hidden="true"></span> Adelaide 3D printing</div>
 
         <div class="hero-media">
