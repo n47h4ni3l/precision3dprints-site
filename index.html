@@ -329,62 +329,58 @@
       gap: 18px;
     }
 
-    /* Quick contact buttons (side-by-side pills) */
-    .quick-contact-buttons{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 10px;
-      align-items: stretch;
-    }
-    .qc-btn{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height: 44px;
-      border-radius: 999px;
-      font-weight: 900;
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
-      gap: 6px;
-      user-select: none;
-    }
-   /* Microsoft 365-ish black pill */
+   /* === Quick contact: match official flat button vibe === */
+.quick-contact-buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.qc-btn{
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  /* flat */
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: none;
+
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  text-decoration: none;
+  user-select: none;
+
+  transition: transform .12s ease, filter .12s ease, background-color .12s ease;
+}
+
+.qc-btn:hover{ filter: brightness(1.06); }
+.qc-btn:active{ transform: translateY(1px) scale(0.99); }
+
+/* “Microsoft / Outlook” style: flat near-black */
 .qc-email{
-  background: linear-gradient(180deg, #2b2b2b 0%, #141414 100%) !important;
-  color: #ffffff !important;
-
-  border: 1px solid rgba(255,255,255,0.14) !important;
-
-  box-shadow:
-    0 12px 28px rgba(0,0,0,0.45),
-    inset 0 1px 0 rgba(255,255,255,0.10),
-    inset 0 -1px 0 rgba(0,0,0,0.55) !important;
-
-  filter: none !important;
+  background: #1f1f1f;
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.08);
 }
 
-.qc-email:hover{
-  background: linear-gradient(180deg, #323232 0%, #171717 100%) !important;
-  border-color: rgba(255,255,255,0.20) !important;
+/* Messenger official blue */
+.qc-messenger{
+  background: #0084ff;
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.08);
 }
 
-.qc-email:active{
-  transform: translateY(1px) scale(0.99);
-  box-shadow:
-    0 8px 18px rgba(0,0,0,0.40),
-    inset 0 2px 0 rgba(0,0,0,0.55) !important;
+@media (max-width: 640px){
+  .quick-contact-buttons{ grid-template-columns: 1fr 1fr; }
+
+  .qc-email:focus-visible{ box-shadow: 0 0 0 4px rgba(255,255,255,0.18); }
+.qc-messenger:focus-visible{ box-shadow: 0 0 0 4px rgba(0,132,255,0.25); }
 }
-    .qc-messenger{
-      background: #0084ff;
-      color: white;
-      border-color: rgba(255,255,255,0.10);
-    }
-    .qc-btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(0,0,0,0.35);
-      filter: brightness(1.02);
-    }
+    
 
     /* Lists */
     .list{
