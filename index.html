@@ -1066,9 +1066,7 @@ html, body { overflow-x: hidden; }
         Submit your quote details first. Once the form is received, the Dropbox upload button will unlock so your file can be matched to your email.
       </p>
 
-      <iframe id="formspreeFrame" name="formspreeFrame" class="hidden" title="Quote form submission"></iframe>
-
-      <form id="quoteForm" action="https://formspree.io/f/xaqyvgeb" method="POST" target="formspreeFrame">
+      <form id="quoteForm" action="https://formspree.io/f/xaqyvgeb" method="POST">
         <input type="hidden" name="_subject" value="New 3D Print Quote Request (Website)" />
         <input type="hidden" name="_next" value="https://precision3dprints.com.au/thanks.html" />
 
@@ -1150,7 +1148,7 @@ html, body { overflow-x: hidden; }
         <button id="quoteSubmitBtn" class="btn submit" type="submit">Get a fast quote</button>
 
         <p id="quoteStatus" class="upload-status" aria-live="polite">
-          Dropbox upload is locked until this quote form is submitted successfully.
+          After submitting this quote form, you will be taken to the upload page.
         </p>
 
         <div class="divider"></div>
@@ -1164,7 +1162,7 @@ html, body { overflow-x: hidden; }
           </a>
         </div>
 
-        <p class="fine">After submitting the quote form, upload your file via Dropbox. If helpful, mention the uploaded filename in Notes.</p>
+        <p class="fine">After submitting the quote form, you will be taken to the upload page. If helpful, mention the uploaded filename in Notes.</p>
       </form>
     </section>
 
@@ -1207,15 +1205,12 @@ html, body { overflow-x: hidden; }
     if (deliveryEl) deliveryEl.addEventListener("change", syncShippingMini);
     syncShippingMini();
 
-    // Quote form: submit to Formspree in a hidden iframe, then unlock Dropbox uploads.
-    // This avoids browser/CORS issues that can happen with JavaScript fetch().
+    // Quote form: submit normally to Formspree so the email is definitely received.
+    // Upload links stay locked on this page; Formspree redirects to thanks.html where upload is available.
     const quoteForm = document.getElementById("quoteForm");
     const quoteSubmitBtn = document.getElementById("quoteSubmitBtn");
     const quoteStatus = document.getElementById("quoteStatus");
-    const formspreeFrame = document.getElementById("formspreeFrame");
     const dropboxUploadLinks = document.querySelectorAll("[data-dropbox-upload]");
-    let quoteSubmitAttempted = false;
-    let quoteMarkedSubmitted = false;
 
     function lockUploads(){
       dropboxUploadLinks.forEach((link) => {
@@ -1225,42 +1220,10 @@ html, body { overflow-x: hidden; }
       });
     }
 
-    function unlockUploads(){
-      dropboxUploadLinks.forEach((link) => {
-        link.classList.remove("upload-locked");
-        link.removeAttribute("aria-disabled");
-        link.setAttribute("title", "Upload your file via Dropbox");
-      });
-    }
-
-    function markQuoteSubmitted(){
-      if (!quoteSubmitAttempted || quoteMarkedSubmitted) return;
-
-      quoteMarkedSubmitted = true;
-      unlockUploads();
-
-      if (quoteStatus) {
-        quoteStatus.className = "upload-status success";
-        quoteStatus.textContent = "Quote details submitted. The Dropbox upload button is now unlocked — please upload your STL / STEP / 3MF / ZIP file.";
-      }
-
-      if (quoteSubmitBtn) {
-        quoteSubmitBtn.disabled = true;
-        quoteSubmitBtn.textContent = "Quote details submitted";
-      }
-    }
-
     lockUploads();
 
     if (quoteForm) {
-      quoteForm.addEventListener("submit", (event) => {
-        if (!quoteForm.checkValidity()) {
-          return;
-        }
-
-        quoteSubmitAttempted = true;
-        quoteMarkedSubmitted = false;
-
+      quoteForm.addEventListener("submit", () => {
         try {
           gtag('event', 'generate_lead', {
             'event_category': 'form',
@@ -1270,22 +1233,14 @@ html, body { overflow-x: hidden; }
 
         if (quoteStatus) {
           quoteStatus.className = "upload-status";
-          quoteStatus.textContent = "Submitting your quote details…";
+          quoteStatus.textContent = "Submitting your quote details… you will be taken to the upload page next.";
         }
 
         if (quoteSubmitBtn) {
           quoteSubmitBtn.disabled = true;
           quoteSubmitBtn.textContent = "Submitting…";
         }
-
-        // Fallback unlock: the normal HTML form submission is still sent to Formspree,
-        // but some browsers do not reliably fire iframe load events after redirects.
-        window.setTimeout(markQuoteSubmitted, 1800);
       });
-    }
-
-    if (formspreeFrame) {
-      formspreeFrame.addEventListener("load", markQuoteSubmitted);
     }
 
     // Hide floating CTAs when quote is in view
