@@ -752,6 +752,47 @@ html, body { overflow-x: hidden; }
     border-radius: 14px;
   }
 }
+
+/* ---- Locked upload buttons until quote details are submitted ---- */
+.upload-locked{
+  opacity: 0.45 !important;
+  filter: grayscale(0.85);
+  cursor: not-allowed !important;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn.upload-locked,
+.btn.secondary.upload-locked{
+  background: rgba(120,120,120,0.30) !important;
+  color: rgba(238,242,255,0.55) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+.upload-status{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.16);
+  color: rgba(182,189,208,0.92);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.upload-status.success{
+  border-color: rgba(34,197,94,0.35);
+  background: rgba(34,197,94,0.10);
+  color: rgba(220,252,231,0.95);
+}
+
+.upload-status.error{
+  border-color: rgba(248,113,113,0.35);
+  background: rgba(248,113,113,0.10);
+  color: rgba(254,226,226,0.95);
+}
+
   </style>
 </head>
 
@@ -768,7 +809,7 @@ html, body { overflow-x: hidden; }
         <a href="#reviews">Reviews</a>
         <a href="#pricing">Pricing</a>
         <a href="#quote">Quote</a>
-        <a href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload</a>
+        <a href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" class="upload-locked" title="Submit the quote form first to unlock uploads">Upload</a>
       </nav>
     </div>
   </header>
@@ -811,7 +852,7 @@ html, body { overflow-x: hidden; }
 
         <div class="btn-row">
           <a class="btn" href="#quote" aria-label="Request a quote">Request a quote</a>
-          <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" aria-label="Upload your file via Dropbox">
+          <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" aria-label="Upload your file via Dropbox" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">
             Upload file
           </a>
         </div>
@@ -919,7 +960,7 @@ html, body { overflow-x: hidden; }
       </p>
 
       <div class="btn-row">
-        <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload file</a>
+        <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">Upload file</a>
         <a class="btn" href="#quote">Request a quote</a>
       </div>
 
@@ -1013,7 +1054,7 @@ html, body { overflow-x: hidden; }
     </p>
     <div class="btn-row" style="margin-top:12px;">
       <a class="btn" href="#quote">Request a quote</a>
-      <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload file</a>
+      <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">Upload file</a>
     </div>
   </div>
 </section>
@@ -1022,7 +1063,7 @@ html, body { overflow-x: hidden; }
     <section class="card section" id="quote" aria-label="Quote form">
       <h2>Request a quote</h2>
       <p class="fine" style="margin-top:0;">
-        Upload your file via Dropbox (button below). Then submit this form so we can match your details to the upload.
+        Submit your quote details first. Once the form is received, the Dropbox upload button will unlock so your file can be matched to your email.
       </p>
 
       <form id="quoteForm" action="https://formspree.io/f/xaqyvgeb" method="POST">
@@ -1102,21 +1143,26 @@ html, body { overflow-x: hidden; }
         <label for="notes">Notes (optional)</label>
         <textarea id="notes" name="notes" placeholder="Intended use, strength requirements, finish preferences, and/or a link to the model file."></textarea>
 
+        <p class="fine">By submitting, you confirm you have rights to the file and are requesting print-only services from your supplied design.</p>
+
+        <button id="quoteSubmitBtn" class="btn submit" type="submit">Get a fast quote</button>
+
+        <p id="quoteStatus" class="upload-status" aria-live="polite">
+          Dropbox upload is locked until this quote form is submitted successfully.
+        </p>
+
         <div class="divider"></div>
 
         <h3>Upload your file</h3>
         <p class="fine" style="margin-top:0;">Files accepted: STL / STEP / 3MF / ZIP.</p>
 
         <div class="btn-row" style="margin-top:10px;">
-          <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">
+          <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">
             Upload file via Dropbox
           </a>
         </div>
 
-        <p class="fine">After uploading, return here and submit the form. If helpful, mention the uploaded filename in Notes.</p>
-        <p class="fine">By submitting, you confirm you have rights to the file and are requesting print-only services from your supplied design.</p>
-
-        <button class="btn submit" type="submit">Get a fast quote</button>
+        <p class="fine">After submitting the quote form, upload your file via Dropbox. If helpful, mention the uploaded filename in Notes.</p>
       </form>
     </section>
 
@@ -1127,7 +1173,7 @@ html, body { overflow-x: hidden; }
 
   <!-- Desktop floating CTAs -->
   <div class="float-ctas" aria-label="Quick actions">
-    <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload file</a>
+    <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">Upload file</a>
     <a class="btn" href="#quote">Request a quote</a>
   </div>
 
@@ -1135,7 +1181,7 @@ html, body { overflow-x: hidden; }
   <div class="mobile-cta" aria-label="Quick actions">
     <div class="bar">
       <a class="btn" href="#quote">Request a quote</a>
-      <a class="btn secondary" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener">Upload</a>
+      <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">Upload</a>
     </div>
   </div>
 
@@ -1159,16 +1205,90 @@ html, body { overflow-x: hidden; }
     if (deliveryEl) deliveryEl.addEventListener("change", syncShippingMini);
     syncShippingMini();
 
-    // GA4 event on submit (safe if gtag isn't present)
+    // Quote form: submit to Formspree in the background, then unlock Dropbox uploads.
     const quoteForm = document.getElementById("quoteForm");
+    const quoteSubmitBtn = document.getElementById("quoteSubmitBtn");
+    const quoteStatus = document.getElementById("quoteStatus");
+    const dropboxUploadLinks = document.querySelectorAll("[data-dropbox-upload]");
+
+    function lockUploads(){
+      dropboxUploadLinks.forEach((link) => {
+        link.classList.add("upload-locked");
+        link.setAttribute("aria-disabled", "true");
+        link.setAttribute("title", "Submit the quote form first to unlock uploads");
+      });
+    }
+
+    function unlockUploads(){
+      dropboxUploadLinks.forEach((link) => {
+        link.classList.remove("upload-locked");
+        link.removeAttribute("aria-disabled");
+        link.setAttribute("title", "Upload your file via Dropbox");
+      });
+    }
+
+    lockUploads();
+
     if (quoteForm) {
-      quoteForm.addEventListener("submit", () => {
+      quoteForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (!quoteForm.checkValidity()) {
+          quoteForm.reportValidity();
+          return;
+        }
+
         try {
           gtag('event', 'generate_lead', {
             'event_category': 'form',
             'event_label': 'quote_request'
           });
         } catch(e) {}
+
+        if (quoteStatus) {
+          quoteStatus.className = "upload-status";
+          quoteStatus.textContent = "Submitting your quote details…";
+        }
+
+        if (quoteSubmitBtn) {
+          quoteSubmitBtn.disabled = true;
+          quoteSubmitBtn.textContent = "Submitting…";
+        }
+
+        try {
+          const response = await fetch(quoteForm.action, {
+            method: "POST",
+            body: new FormData(quoteForm),
+            headers: { "Accept": "application/json" }
+          });
+
+          if (!response.ok) {
+            throw new Error("Form submission failed");
+          }
+
+          unlockUploads();
+
+          if (quoteStatus) {
+            quoteStatus.className = "upload-status success";
+            quoteStatus.textContent = "Quote details received. The Dropbox upload button is now unlocked — please upload your STL / STEP / 3MF / ZIP file.";
+          }
+
+          if (quoteSubmitBtn) {
+            quoteSubmitBtn.textContent = "Quote details submitted";
+          }
+        } catch (error) {
+          lockUploads();
+
+          if (quoteStatus) {
+            quoteStatus.className = "upload-status error";
+            quoteStatus.textContent = "Sorry, the quote form did not submit. Please check your connection and try again, or email sales@precision3dprints.com.au.";
+          }
+
+          if (quoteSubmitBtn) {
+            quoteSubmitBtn.disabled = false;
+            quoteSubmitBtn.textContent = "Get a fast quote";
+          }
+        }
       });
     }
 
