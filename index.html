@@ -753,23 +753,6 @@ html, body { overflow-x: hidden; }
   }
 }
 
-/* ---- Locked upload buttons until quote details are submitted ---- */
-.upload-locked{
-  opacity: 0.45 !important;
-  filter: grayscale(0.85);
-  cursor: not-allowed !important;
-  pointer-events: none;
-  transform: none !important;
-  box-shadow: none !important;
-}
-
-.btn.upload-locked,
-.btn.secondary.upload-locked{
-  background: rgba(120,120,120,0.30) !important;
-  color: rgba(238,242,255,0.55) !important;
-  border-color: rgba(255,255,255,0.12) !important;
-}
-
 .upload-status{
   margin-top: 10px;
   padding: 10px 12px;
@@ -779,18 +762,6 @@ html, body { overflow-x: hidden; }
   color: rgba(182,189,208,0.92);
   font-size: 12.5px;
   line-height: 1.45;
-}
-
-.upload-status.success{
-  border-color: rgba(34,197,94,0.35);
-  background: rgba(34,197,94,0.10);
-  color: rgba(220,252,231,0.95);
-}
-
-.upload-status.error{
-  border-color: rgba(248,113,113,0.35);
-  background: rgba(248,113,113,0.10);
-  color: rgba(254,226,226,0.95);
 }
 
   </style>
@@ -809,7 +780,7 @@ html, body { overflow-x: hidden; }
         <a href="#reviews">Reviews</a>
         <a href="#pricing">Pricing</a>
         <a href="#quote">Quote</a>
-        <a href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" class="upload-locked" title="Submit the quote form first to unlock uploads">Upload</a>
+        <a href="#quote" title="Submit a quote request first, then upload on the next page">Upload</a>
       </nav>
     </div>
   </header>
@@ -852,9 +823,7 @@ html, body { overflow-x: hidden; }
 
         <div class="btn-row">
           <a class="btn" href="#quote" aria-label="Request a quote">Request a quote</a>
-          <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" aria-label="Upload your file via Dropbox" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">
-            Upload file
-          </a>
+          <a class="btn secondary" href="#quote" title="Submit the quote form first; upload is on the next page">Upload after quote</a>
         </div>
 
         <p class="fine">
@@ -904,13 +873,13 @@ html, body { overflow-x: hidden; }
           <div class="steps">
             <div class="step">
               <div class="n">1</div>
-              <h3>Upload your file</h3>
-              <p>Use the Dropbox upload link (STL/STEP/3MF/ZIP).</p>
+              <h3>Request a quote</h3>
+              <p>Tell us quantity, material preference, and delivery.</p>
             </div>
             <div class="step">
               <div class="n">2</div>
-              <h3>Request a quote</h3>
-              <p>Tell us quantity, material preference, and delivery.</p>
+              <h3>Upload your file</h3>
+              <p>After the form is submitted, upload your STL/STEP/3MF/ZIP on the next page.</p>
             </div>
             <div class="step">
               <div class="n">3</div>
@@ -956,11 +925,11 @@ html, body { overflow-x: hidden; }
       </ul>
 
       <p class="fine">
-        Want the fastest quote? Upload your file first, then include the filename and your preferred material (or choose “No preference”).
+        Want the fastest quote? Submit the form with your preferred material (or choose “No preference”), then upload your file on the next page.
       </p>
 
       <div class="btn-row">
-        <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">Upload file</a>
+        <a class="btn secondary" href="#quote" title="Submit the quote form first; upload is on the next page">Upload after quote</a>
         <a class="btn" href="#quote">Request a quote</a>
       </div>
 
@@ -1054,7 +1023,7 @@ html, body { overflow-x: hidden; }
     </p>
     <div class="btn-row" style="margin-top:12px;">
       <a class="btn" href="#quote">Request a quote</a>
-      <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">Upload file</a>
+      <a class="btn secondary" href="#quote" title="Submit the quote form first; upload is on the next page">Upload after quote</a>
     </div>
   </div>
 </section>
@@ -1063,7 +1032,7 @@ html, body { overflow-x: hidden; }
     <section class="card section" id="quote" aria-label="Quote form">
       <h2>Request a quote</h2>
       <p class="fine" style="margin-top:0;">
-        Submit your quote details first. Once the form is received, the Dropbox upload button will unlock so your file can be matched to your email.
+        Submit your quote details first. After Formspree receives the form, you’ll be taken to the upload page so your file can be matched to your email.
       </p>
 
       <form id="quoteForm" action="https://formspree.io/f/xaqyvgeb" method="POST">
@@ -1148,21 +1117,8 @@ html, body { overflow-x: hidden; }
         <button id="quoteSubmitBtn" class="btn submit" type="submit">Get a fast quote</button>
 
         <p id="quoteStatus" class="upload-status" aria-live="polite">
-          After submitting this quote form, you will be taken to the upload page.
+          After submitting this quote form and completing the Formspree check if shown, you’ll be taken to the upload page.
         </p>
-
-        <div class="divider"></div>
-
-        <h3>Upload your file</h3>
-        <p class="fine" style="margin-top:0;">Files accepted: STL / STEP / 3MF / ZIP.</p>
-
-        <div class="btn-row" style="margin-top:10px;">
-          <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">
-            Upload file via Dropbox
-          </a>
-        </div>
-
-        <p class="fine">After submitting the quote form, you will be taken to the upload page. If helpful, mention the uploaded filename in Notes.</p>
       </form>
     </section>
 
@@ -1173,7 +1129,7 @@ html, body { overflow-x: hidden; }
 
   <!-- Desktop floating CTAs -->
   <div class="float-ctas" aria-label="Quick actions">
-    <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">Upload file</a>
+    <a class="btn secondary" href="#quote" title="Submit the quote form first; upload is on the next page">Upload after quote</a>
     <a class="btn" href="#quote">Request a quote</a>
   </div>
 
@@ -1181,7 +1137,7 @@ html, body { overflow-x: hidden; }
   <div class="mobile-cta" aria-label="Quick actions">
     <div class="bar">
       <a class="btn" href="#quote">Request a quote</a>
-      <a class="btn secondary upload-locked" href="https://www.dropbox.com/request/TIcmmfu4QLWDNseQP4w7" target="_blank" rel="noopener" data-dropbox-upload aria-disabled="true" title="Submit the quote form first to unlock uploads">Upload</a>
+      <a class="btn secondary" href="#quote" title="Submit the quote form first; upload is on the next page">Upload after quote</a>
     </div>
   </div>
 
@@ -1206,21 +1162,10 @@ html, body { overflow-x: hidden; }
     syncShippingMini();
 
     // Quote form: submit normally to Formspree so the email is definitely received.
-    // Upload links stay locked on this page; Formspree redirects to thanks.html where upload is available.
+    // Formspree then redirects to thanks.html, where the Dropbox upload button is available.
     const quoteForm = document.getElementById("quoteForm");
     const quoteSubmitBtn = document.getElementById("quoteSubmitBtn");
     const quoteStatus = document.getElementById("quoteStatus");
-    const dropboxUploadLinks = document.querySelectorAll("[data-dropbox-upload]");
-
-    function lockUploads(){
-      dropboxUploadLinks.forEach((link) => {
-        link.classList.add("upload-locked");
-        link.setAttribute("aria-disabled", "true");
-        link.setAttribute("title", "Submit the quote form first to unlock uploads");
-      });
-    }
-
-    lockUploads();
 
     if (quoteForm) {
       quoteForm.addEventListener("submit", () => {
@@ -1233,7 +1178,7 @@ html, body { overflow-x: hidden; }
 
         if (quoteStatus) {
           quoteStatus.className = "upload-status";
-          quoteStatus.textContent = "Submitting your quote details… you will be taken to the upload page next.";
+          quoteStatus.textContent = "Submitting your quote details… complete the Formspree check if shown, then you’ll be taken to the upload page.";
         }
 
         if (quoteSubmitBtn) {
