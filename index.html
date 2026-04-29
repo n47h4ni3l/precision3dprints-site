@@ -1066,7 +1066,9 @@ html, body { overflow-x: hidden; }
         Submit your quote details first. Once the form is received, the Dropbox upload button will unlock so your file can be matched to your email.
       </p>
 
-      <form id="quoteForm" action="https://formspree.io/f/xaqyvgeb" method="POST">
+      <iframe id="formspreeFrame" name="formspreeFrame" class="hidden" title="Quote form submission"></iframe>
+
+      <form id="quoteForm" action="https://formspree.io/f/xaqyvgeb" method="POST" target="formspreeFrame">
         <input type="hidden" name="_subject" value="New 3D Print Quote Request (Website)" />
         <input type="hidden" name="_next" value="https://precision3dprints.com.au/thanks.html" />
 
@@ -1205,11 +1207,15 @@ html, body { overflow-x: hidden; }
     if (deliveryEl) deliveryEl.addEventListener("change", syncShippingMini);
     syncShippingMini();
 
-    // Quote form: submit to Formspree in the background, then unlock Dropbox uploads.
+    // Quote form: submit to Formspree in a hidden iframe, then unlock Dropbox uploads.
+    // This avoids browser/CORS issues that can happen with JavaScript fetch().
     const quoteForm = document.getElementById("quoteForm");
     const quoteSubmitBtn = document.getElementById("quoteSubmitBtn");
     const quoteStatus = document.getElementById("quoteStatus");
+    const formspreeFrame = document.getElementById("formspreeFrame");
     const dropboxUploadLinks = document.querySelectorAll("[data-dropbox-upload]");
+    let quoteSubmitAttempted = false;
+    let quoteMarkedSubmitted = false;
 
     function lockUploads(){
       dropboxUploadLinks.forEach((link) => {
@@ -1227,16 +1233,33 @@ html, body { overflow-x: hidden; }
       });
     }
 
+    function markQuoteSubmitted(){
+      if (!quoteSubmitAttempted || quoteMarkedSubmitted) return;
+
+      quoteMarkedSubmitted = true;
+      unlockUploads();
+
+      if (quoteStatus) {
+        quoteStatus.className = "upload-status success";
+        quoteStatus.textContent = "Quote details submitted. The Dropbox upload button is now unlocked — please upload your STL / STEP / 3MF / ZIP file.";
+      }
+
+      if (quoteSubmitBtn) {
+        quoteSubmitBtn.disabled = true;
+        quoteSubmitBtn.textContent = "Quote details submitted";
+      }
+    }
+
     lockUploads();
 
     if (quoteForm) {
-      quoteForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
+      quoteForm.addEventListener("submit", (event) => {
         if (!quoteForm.checkValidity()) {
-          quoteForm.reportValidity();
           return;
         }
+
+        quoteSubmitAttempted = true;
+        quoteMarkedSubmitted = false;
 
         try {
           gtag('event', 'generate_lead', {
@@ -1255,41 +1278,14 @@ html, body { overflow-x: hidden; }
           quoteSubmitBtn.textContent = "Submitting…";
         }
 
-        try {
-          const response = await fetch(quoteForm.action, {
-            method: "POST",
-            body: new FormData(quoteForm),
-            headers: { "Accept": "application/json" }
-          });
-
-          if (!response.ok) {
-            throw new Error("Form submission failed");
-          }
-
-          unlockUploads();
-
-          if (quoteStatus) {
-            quoteStatus.className = "upload-status success";
-            quoteStatus.textContent = "Quote details received. The Dropbox upload button is now unlocked — please upload your STL / STEP / 3MF / ZIP file.";
-          }
-
-          if (quoteSubmitBtn) {
-            quoteSubmitBtn.textContent = "Quote details submitted";
-          }
-        } catch (error) {
-          lockUploads();
-
-          if (quoteStatus) {
-            quoteStatus.className = "upload-status error";
-            quoteStatus.textContent = "Sorry, the quote form did not submit. Please check your connection and try again, or email sales@precision3dprints.com.au.";
-          }
-
-          if (quoteSubmitBtn) {
-            quoteSubmitBtn.disabled = false;
-            quoteSubmitBtn.textContent = "Get a fast quote";
-          }
-        }
+        // Fallback unlock: the normal HTML form submission is still sent to Formspree,
+        // but some browsers do not reliably fire iframe load events after redirects.
+        window.setTimeout(markQuoteSubmitted, 1800);
       });
+    }
+
+    if (formspreeFrame) {
+      formspreeFrame.addEventListener("load", markQuoteSubmitted);
     }
 
     // Hide floating CTAs when quote is in view
