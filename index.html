@@ -780,7 +780,7 @@ html, body { overflow-x: hidden; }
         <a href="#reviews">Reviews</a>
         <a href="#pricing">Pricing</a>
         <a href="#quote">Quote</a>
-        <a href="#quote" title="Submit a quote request first, then upload on the next page">Upload</a>
+        <a href="#quote" title="Submit a quote request">Upload</a>
       </nav>
     </div>
   </header>
@@ -813,11 +813,7 @@ html, body { overflow-x: hidden; }
           </span>
           <span class="pill">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h18M6 7v12m12-12v12M6 19h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            PLA • PETG • ASA • TPU
-          </span>
-          <span class="pill">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Clear communication
+            PLA • PETG • ASA • TPU • ABS • CF/GF
           </span>
         </div>
 
@@ -858,7 +854,8 @@ html, body { overflow-x: hidden; }
           <h2 id="services">Services</h2>
           <ul class="list">
             <li>Hobby parts and accessories</li>
-            <li>Replacement parts (customer-supplied files)</li>
+            <li>Replacement parts</li>
+            <li>Replicatate broken appliance parts</li>
             <li>Small brackets, mounts, enclosures</li>
             <li>Prototype and test prints</li>
           </ul>
@@ -884,7 +881,7 @@ html, body { overflow-x: hidden; }
             <div class="step">
               <div class="n">3</div>
               <h3>Approve &amp; print</h3>
-              <p>We confirm details, print, then pickup or ship.</p>
+              <p>We confirm details, print and ship.</p>
             </div>
           </div>
 
@@ -925,7 +922,7 @@ html, body { overflow-x: hidden; }
       </ul>
 
       <p class="fine">
-        Want the fastest quote? Submit the form with your preferred material (or choose “No preference”), then upload your file on the next page.
+        Ready to quote? Submit the form with your preferred material (or choose “No preference”), then upload your file on the next page.
       </p>
 
       <div class="btn-row">
@@ -944,17 +941,17 @@ html, body { overflow-x: hidden; }
 
       <details class="faq">
         <summary>How fast is turnaround?</summary>
-        <p>Most quotes are returned within 12 hours. Print turnaround depends on size, material, and queue — we’ll confirm timing with your quote.</p>
+        <p>Most quotes are returned within 12 hours. Print turnaround depends on size, material, and queue - we’ll confirm timing with your quote.</p>
       </details>
 
       <details class="faq">
         <summary>Which material should I choose?</summary>
-        <p>If you’re not sure, choose “No preference” and tell us the intended use — we’ll recommend the best option (PLA/PETG/ASA/TPU).</p>
+        <p>If you’re not sure, choose “No preference” and tell us the intended use and we’ll recommend the best option.</p>
       </details>
 
       <details class="faq">
         <summary>Do you ship Australia-wide?</summary>
-        <p>Yes. Pickup is available in Adelaide, and we can ship anywhere in Australia once your quote is approved.</p>
+        <p>Yes.</p>
       </details>
 
       <details class="faq">
@@ -989,7 +986,7 @@ html, body { overflow-x: hidden; }
       </span>
       <span class="ms-main">
         <span class="ms-title">Printables</span>
-        <span class="ms-sub">Clean library + lots of practical parts</span>
+        <span class="ms-sub">Clean library & lots of practical parts</span>
       </span>
       <span class="ms-go" aria-hidden="true">↗</span>
     </a>
@@ -1011,7 +1008,7 @@ html, body { overflow-x: hidden; }
       </span>
       <span class="ms-main">
         <span class="ms-title">Cults3D</span>
-        <span class="ms-sub">Great paid designs + niche finds</span>
+        <span class="ms-sub">Great paid designs & niche finds</span>
       </span>
       <span class="ms-go" aria-hidden="true">↗</span>
     </a>
@@ -1032,7 +1029,7 @@ html, body { overflow-x: hidden; }
     <section class="card section" id="quote" aria-label="Quote form">
       <h2>Request a quote</h2>
       <p class="fine" style="margin-top:0;">
-        Submit your quote details first. After Formspree receives the form, you’ll be taken to the upload page so your file can be matched to your email.
+        Submit your quote details first. After we recieve the form, you’ll be taken to the upload page so your file can be matched to your email.
       </p>
 
       <form id="quoteForm" action="https://formspree.io/f/xaqyvgeb" method="POST">
@@ -1117,7 +1114,7 @@ html, body { overflow-x: hidden; }
         <button id="quoteSubmitBtn" class="btn submit" type="submit">Get a fast quote</button>
 
         <p id="quoteStatus" class="upload-status" aria-live="polite">
-          After submitting this quote form and completing the Formspree check if shown, you’ll be taken to the upload page.
+          After submitting this quote form, you’ll be taken to the upload page.
         </p>
       </form>
     </section>
