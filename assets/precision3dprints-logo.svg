@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 96" role="img" aria-labelledby="title desc">
+  <title id="title">Precision 3D Prints</title>
+  <desc id="desc">Precision 3D Prints logo with orange geometric cube mark and text.</desc>
+  <defs>
+    <linearGradient id="orange" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffb04f"/>
+      <stop offset="1" stop-color="#f57c00"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#f57c00" flood-opacity="0.26"/>
+    </filter>
+  </defs>
+  <g filter="url(#glow)">
+    <rect x="4" y="10" width="72" height="72" rx="18" fill="url(#orange)"/>
+    <path d="M40 22 62 34v26L40 74 18 60V34l22-12Z" fill="none" stroke="#1a1208" stroke-opacity="0.25" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M40 22v24m0 28V46M18 34l22 12 22-12M18 60l22 14 22-14" fill="none" stroke="#fff3e4" stroke-opacity="0.34" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M27 34h14c8 0 13 5 13 12s-5 12-13 12h-7v12h-7V34Zm7 6v12h7c4 0 6-2 6-6s-2-6-6-6h-7Z" fill="#6b3300" opacity="0.34"/>
+  </g>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="900">
+    <text x="94" y="45" font-size="30" fill="#ffffff" letter-spacing="-0.7">Precision</text>
+    <text x="235" y="45" font-size="30" fill="#ff9b3d" letter-spacing="-0.7">3D</text>
+    <text x="277" y="45" font-size="30" fill="#ffffff" letter-spacing="-0.7">Prints</text>
+    <text x="96" y="67" font-size="16" fill="#c8ceda" font-weight="800" letter-spacing="0.1">3D Printing Adelaide</text>
+  </g>
+</svg>
