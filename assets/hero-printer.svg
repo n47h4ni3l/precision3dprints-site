@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">Stylised 3D printer artwork</title>
+<desc id="desc">Original dark industrial illustration of a 3D printer producing an orange part.</desc>
+<defs>
+<linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#1e293b"/><stop offset="0.52" stop-color="#0f172a"/><stop offset="1" stop-color="#030712"/></linearGradient>
+<linearGradient id="metal" x1="0" x2="1"><stop stop-color="#cbd5e1"/><stop offset="0.5" stop-color="#64748b"/><stop offset="1" stop-color="#111827"/></linearGradient>
+<linearGradient id="orange" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#ffb04f"/><stop offset="1" stop-color="#f57c00"/></linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="28" stdDeviation="28" flood-color="#000" flood-opacity="0.45"/></filter>
+</defs>
+<rect width="1200" height="760" fill="url(#bg)"/>
+<circle cx="910" cy="340" r="310" fill="#1d4ed8" opacity="0.16"/>
+<circle cx="795" cy="575" r="260" fill="#f57c00" opacity="0.12"/>
+<g opacity="0.26" stroke="#e5e7eb" stroke-width="2">
+<path d="M70 130h1060M90 240h1020M130 620h920"/>
+<path d="M210 80v600M590 70v620M960 90v560"/>
+</g>
+<g filter="url(#shadow)">
+<rect x="174" y="116" width="852" height="72" rx="28" fill="#111827" stroke="#475569" stroke-width="3"/>
+<rect x="208" y="188" width="36" height="402" rx="18" fill="url(#metal)"/>
+<rect x="956" y="188" width="36" height="402" rx="18" fill="url(#metal)"/>
+<rect x="245" y="548" width="710" height="58" rx="22" fill="#0f172a" stroke="#334155" stroke-width="3"/>
+<rect x="320" y="238" width="560" height="52" rx="20" fill="#1f2937" stroke="#64748b" stroke-width="3"/>
+<rect x="506" y="206" width="188" height="140" rx="28" fill="#0b1220" stroke="#64748b" stroke-width="4"/>
+<circle cx="552" cy="276" r="22" fill="#94a3b8"/>
+<circle cx="648" cy="276" r="22" fill="#94a3b8"/>
+<path d="M575 346h50l-16 74h-18z" fill="#cbd5e1"/>
+<path d="M600 428c22 16 74 15 106 42" fill="none" stroke="#ff9b3d" stroke-width="8" stroke-linecap="round" opacity="0.88"/>
+<rect x="468" y="470" width="270" height="88" rx="24" fill="url(#orange)"/>
+<rect x="506" y="494" width="194" height="40" rx="12" fill="#101827" opacity="0.32"/>
+</g>
+<g opacity="0.75">
+<circle cx="1010" cy="150" r="54" fill="none" stroke="#94a3b8" stroke-width="6"/>
+<path d="M1010 96v108M956 150h108M972 112l76 76M1048 112l-76 76" stroke="#94a3b8" stroke-width="5"/>
+</g>
+</svg>
